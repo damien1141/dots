@@ -83,15 +83,32 @@ install_aur_packages() {
 ensure_rust() {
   info "ensuring rust toolchain"
 
-  if ! command -v cargo >/dev/null 2>&1; then
-    info "cargo not found, installing rustup"
-    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y || die "rustup install failed"
-    source "$HOME/.cargo/env" || true
+  if command -v cargo >/dev/null 2>&1; then
+    return 0
   fi
+
+  info "cargo not found"
+  if [[ -t 0 ]]; then
+    read -rp "install rustup now? [Y/n]: " input || input="n"
+  else
+    info "non-interactive terminal: skipping rustup"
+    return 1
+  fi
+
+  if [[ "$input" =~ ^[Nn]$ ]]; then
+    info "skipping rustup install"
+    return 1
+  fi
+
+  info "installing rustup"
+  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y || die "rustup install failed"
+  source "$HOME/.cargo/env" || true
 
   if ! command -v cargo >/dev/null 2>&1; then
     die "cargo still not available after rustup install"
   fi
+
+  return 0
 }
 
 build_jaiba() {
@@ -242,8 +259,13 @@ main() {
   detect_aur_helper
   install_repo_packages
   install_aur_packages
-  ensure_rust
-  build_jaiba
+
+  if ensure_rust; then
+    build_jaiba
+  else
+    info "skipping jaiba build"
+  fi
+
   configure_fonts
   configure_icons_cursor
   deploy_dotfiles
