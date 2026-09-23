@@ -13,7 +13,7 @@ REPO_PKGS=(
 AUR_PKGS=(
   opentubex-bin rofi-greenclip librewolf-bin
   bibata-cursor-theme-bin  betterlockscreen mpdris2-git
-  ttf-harmonyos-sans ttf-jetbrains-mono-nerd ttf-ms-fonts
+  ttf-ms-fonts
 )
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -224,15 +224,16 @@ build_jaiba() {
 configure_fonts() {
   info "configuring fonts"
 
-  # Copy repo-provided fonts into user font tree
-  if [[ -d "$FONTS_DIR/emoji" ]]; then
-    mkdir -p "$HOME/.local/share/fonts/emoji"
-    cp -a "$FONTS_DIR/emoji/." "$HOME/.local/share/fonts/emoji/" || warn "emoji font copy failed"
-  fi
-
-  if [[ -d "$FONTS_DIR/material-design-icons" ]]; then
-    mkdir -p "$HOME/.local/share/fonts/material-design-icons"
-    cp -a "$FONTS_DIR/material-design-icons/." "$HOME/.local/share/fonts/material-design-icons/" || warn "material icons copy failed"
+  # Copy all repo-provided fonts into user font tree
+  if [[ -d "$FONTS_DIR" ]]; then
+    local font_dir
+    for font_dir in "$FONTS_DIR"/*/; do
+      [[ -d "$font_dir" ]] || continue
+      local name
+      name="$(basename "$font_dir")"
+      mkdir -p "$HOME/.local/share/fonts/$name"
+      cp -a "$font_dir/." "$HOME/.local/share/fonts/$name/" || warn "font copy failed: $name"
+    done
   fi
 
   # Fontconfig aliases: HarmonyOS Sans for sans, JetBrains Mono Nerd for mono
@@ -250,7 +251,13 @@ configure_fonts() {
   <alias>
     <family>monospace</family>
     <prefer>
-      <family>JetBrains Mono Nerd Font</family>
+      <family>JetBrainsMono Nerd Font</family>
+    </prefer>
+  </alias>
+  <alias>
+    <family>serif</family>
+    <prefer>
+      <family>SourceSerifPro</family>
     </prefer>
   </alias>
 </fontconfig>

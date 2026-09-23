@@ -16,7 +16,7 @@ colors.bg_2             = "#1a1a1d"
 colors.bg_3             = "#212125"
 
 -- backgrounds (Frosted - for dashboards, popups, and control centers)
--- These alpha channels (CC, B3, 99) trigger the picom blur perfectly 
+-- These alpha channels (CC, B3, 99) trigger the picom blur perfectly
 -- without being so transparent that you can't read the text.
 colors.bg_transparent   = "#0F0F11EE" -- 80% opacity (Best for main dashboards)
 colors.bg_frost_2       = "#1a1a1dd3" -- 70% opacity (Best for inner cards/widgets inside the dashboard)

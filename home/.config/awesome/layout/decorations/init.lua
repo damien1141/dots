@@ -14,7 +14,7 @@ local SHOW_TOPBAR = true
 local TOPBAR_SIZE = dpi(40)
 local SIDEBAR_WIDTH = dpi(200)
 local SIDEBAR_TINT_ALPHA = "26" -- accent alpha over music_bg. "00" = plain bg, "ff" = old slab
-local MUSIC_DIR = os.getenv("HOME") .. "/Music/artists/"
+local MUSIC_DIR = os.getenv("HOME") .. "/Música/artists/"
 -------------------------------------------------------------------------
 
 local ok_helpers, helpers = pcall(require, "helpers")

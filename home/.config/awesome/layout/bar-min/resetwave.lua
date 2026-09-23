@@ -27,17 +27,17 @@ local HEALTH_G2G_INTERVAL = 2 * 60 * 60
 
 -- Simplified, Brighter Colors
 local COLORS = {
-    IDLE       = { r = 30/255, g = 58/255, b = 138/255 }, -- Dim Blue
-    DONE       = { r = 66/255, g = 220/255, b = 120/255 }, -- Bright Green
-    CHAT       = { r = 152/255, g = 240/255, b = 200/255 }, -- Mint Green
-    RESEARCH   = { r = 180/255, g = 140/255, b = 255/255 }, -- Bright Purple
-    WHITE      = { r = 255/255, g = 255/255, b = 255/255 },
-    RED        = { r = 255/255, g = 80/255,  b = 80/255  },
+    IDLE       = { r = 88/255,  g = 178/255, b = 220/255 }, -- 空 (SORA) sky blue
+    DONE       = { r = 93/255,  g = 172/255, b = 129/255 }, -- 若竹 (WAKATAKE) medium green
+    CHAT       = { r = 168/255, g = 216/255, b = 185/255 }, -- 白緑 (BYAKUROKU) pale mint
+    RESEARCH   = { r = 139/255, g = 129/255, b = 195/255 }, -- 藤 (FUJI) light periwinkle
+    WHITE      = { r = 252/255, g = 250/255, b = 242/255 }, -- 白練 (SHIRONERI) off-white
+    RED        = { r = 203/255, g = 27/255,  b = 69/255  }, -- 紅 (KURENAI) crimson
 
     -- Health reminder colors
-    WATER      = { r = 0/255,   g = 122/255, b = 255/255 }, -- Blue
-    FITNESS    = { r = 255/255, g = 149/255, b = 0/255   }, -- Orange
-    POSTURE    = { r = 255/255, g = 45/255,  b = 145/255 }, -- Pink
+    WATER      = { r = 129/255, g = 199/255, b = 212/255 }, -- 水 (MIZU) light cyan blue
+    FITNESS    = { r = 255/255, g = 177/255, b = 27/255  }, -- 山吹 (YAMABUKI) golden yellow
+    POSTURE    = { r = 220/255, g = 159/255, b = 180/255 }, -- 撫子 (NADESHIKO) soft pink
 }
 
 -- State Machine

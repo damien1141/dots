@@ -51,7 +51,7 @@ local function set_album_art(path)
 end
 
 -- cover lookup: mpd file path -> cover/folder/front/art in the track dir
-local MUSIC_DIR = os.getenv("HOME") .. "/Music/artists/"
+local MUSIC_DIR = os.getenv("HOME") .. "/Música/artists/"
 
 local function cover_from_mpd()
     awful.spawn.easy_async_with_shell("mpc -f %file% current", function(out)
