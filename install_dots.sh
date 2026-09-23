@@ -16,7 +16,8 @@ AUR_PKGS=(
 )
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-BACKUP_DIR="$HOME/.config/backup_dots_$(date +%Y%m%d_%H%M%S)"
+AWESOME_GIT_PKGBUILD="$SCRIPT_DIR/awesome-git_custom_PKGBUILD"
+BACKUP_DIR="$HOME/.dots-backup_$(date +%Y%m%d_%H%M%S)"
 FONTS_DIR="$SCRIPT_DIR/fonts"
 HOME_SRC="$SCRIPT_DIR/home"
 
@@ -26,6 +27,13 @@ die() { printf 'fatal: %s\n' "$1" >&2; exit 1; }
 
 require_user() {
   [[ "$(id -u)" -ne 0 ]] || die "do not run as root"
+}
+
+ensure_keyrings() {
+  info "ensuring pacman keyrings (artix + archlinux)"
+  sudo pacman -S --needed --noconfirm artix-keyring archlinux-keyring \
+    || die "keyring install failed"
+  sudo pacman-key --populate artix archlinux || die "keyring populate failed"
 }
 
 ensure_build_deps() {
@@ -97,11 +105,7 @@ install_aur_packages() {
   for p in "${AUR_PKGS[@]}"; do
     case "$AUR_HELPER" in
       aura)
-        if aura -Si "$p" >/dev/null 2>&1; then
-          aura -S --needed --noconfirm "$p" || warn "aura install failed: $p"
-        else
-          warn "aur package not found: $p"
-        fi
+        aura -A --needed --noconfirm "$p" || warn "aura install failed: $p"
         ;;
       yay)
         yay -S --needed --noconfirm "$p" || warn "yay install failed: $p"
@@ -111,6 +115,28 @@ install_aur_packages() {
         ;;
     esac
   done
+}
+
+install_awesome_git() {
+  info "building awesome-git with Lua 5.4"
+  [[ -f "$AWESOME_GIT_PKGBUILD" ]] || die "custom awesome-git PKGBUILD not found"
+  command -v makepkg >/dev/null 2>&1 || die "makepkg not found"
+
+  sudo pacman -S --needed --noconfirm lua54 lua54-lgi \
+    || die "lua 5.4 dependency install failed"
+
+  local tmpdir
+  tmpdir="$(mktemp -d)"
+  trap 'rm -rf "$tmpdir"' RETURN
+
+  git clone https://aur.archlinux.org/awesome-git.git "$tmpdir/awesome-git" \
+    || die "awesome-git AUR clone failed"
+  cp "$AWESOME_GIT_PKGBUILD" "$tmpdir/awesome-git/PKGBUILD" \
+    || die "failed to install custom awesome-git PKGBUILD"
+
+  pushd "$tmpdir/awesome-git" >/dev/null || die "cannot enter awesome-git build dir"
+  makepkg -si --noconfirm || die "awesome-git build/install failed"
+  popd >/dev/null || true
 }
 
 ensure_rust() {
@@ -271,13 +297,13 @@ backup_conflict() {
   local src="$1"
   local dst="$2"
 
-  if [[ -e "$dst" ]]; then
+  if [[ -e "$dst" || -L "$dst" ]]; then
     info "backing up existing $dst"
     mkdir -p "$BACKUP_DIR"
     local rel="${dst#$HOME/}"
     local dest_dir="$BACKUP_DIR/$(dirname "$rel")"
     mkdir -p "$dest_dir"
-    mv "$dst" "$dest_dir/" || warn "backup failed for $dst"
+    mv "$dst" "$dest_dir/" || die "backup failed for $dst"
   fi
 
   info "copying $src -> $dst"
@@ -294,7 +320,7 @@ deploy_dotfiles() {
 
   local item
   for item in "$HOME_SRC"/.* "$HOME_SRC"/*; do
-    [[ -e "$item" ]] || continue
+    [[ -e "$item" || -L "$item" ]] || continue
     local base
     base="$(basename "$item")"
     [[ "$base" == "." || "$base" == ".." ]] && continue
@@ -306,10 +332,12 @@ deploy_dotfiles() {
 
 main() {
   require_user
+  ensure_keyrings
   ensure_build_deps
   detect_aur_helper
   install_repo_packages
   install_aur_packages
+  install_awesome_git
 
   if ensure_rust; then
     build_jaiba
