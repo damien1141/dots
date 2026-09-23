@@ -106,7 +106,7 @@ install_aur_packages() {
   for p in "${AUR_PKGS[@]}"; do
     case "$AUR_HELPER" in
       aura)
-        aura -A --needed --noconfirm "$p" || warn "aura install failed: $p"
+        aura -Au --noconfirm "$p" || warn "aura install failed: $p"
         ;;
       yay)
         yay -S --needed --noconfirm "$p" || warn "yay install failed: $p"
