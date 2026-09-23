@@ -258,11 +258,12 @@ EOF
 
   # QT/KDE icon/cursor
   mkdir -p "$HOME/.config"
-  cat > "$HOME/.config/qt5ct/qt5ct.conf" <<'EOF'
+  mkdir -p "$HOME/.config/qt6ct"
+  cat > "$HOME/.config/qt6ct/qt6ct.conf" <<'EOF'
 [Appearance]
 icon_theme=Qogir
 cursor_theme=Bibata
-style=Awesthetic-Pro
+style=awesthetic
 EOF
 }
 
