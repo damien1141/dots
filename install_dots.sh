@@ -6,7 +6,7 @@ set -Eeuo pipefail
 
 REPO_PKGS=(
   thunar kitty obs-studio btop gimp gram obsidian librewolf bun anki
-  aura onlyoffice-bin
+  # aura removed: it's an AUR package, not in official repos
 )
 
 AUR_PKGS=(
@@ -28,6 +28,37 @@ require_user() {
   [[ "$(id -u)" -ne 0 ]] || die "do not run as root"
 }
 
+ensure_build_deps() {
+  info "ensuring build dependencies (base-devel, git)"
+  local missing=()
+  command -v git >/dev/null 2>&1 || missing+=(git)
+  command -v make >/dev/null 2>&1 || missing+=(base-devel)
+  command -v gcc >/dev/null 2>&1 || missing+=(base-devel)
+
+  if ((${#missing[@]})); then
+    info "installing missing: ${missing[*]}"
+    sudo pacman -S --needed --noconfirm "${missing[@]}" || die "failed to install build deps"
+  fi
+}
+
+bootstrap_aur_helper() {
+  info "bootstrapping AUR helper (yay)"
+
+  local tmpdir
+  tmpdir="$(mktemp -d)"
+  trap 'rm -rf "$tmpdir"' RETURN
+
+  git clone https://aur.archlinux.org/yay.git "$tmpdir/yay" || die "yay git clone failed"
+  pushd "$tmpdir/yay" >/dev/null || die "cannot enter yay build dir"
+  makepkg -si --noconfirm || die "yay build/install failed"
+  popd >/dev/null || true
+
+  # Verify yay is now available
+  command -v yay >/dev/null 2>&1 || die "yay not in PATH after install"
+  AUR_HELPER="yay"
+  info "AUR helper: $AUR_HELPER"
+}
+
 detect_aur_helper() {
   if command -v aura >/dev/null 2>&1; then
     AUR_HELPER="aura"
@@ -36,7 +67,9 @@ detect_aur_helper() {
   elif command -v paru >/dev/null 2>&1; then
     AUR_HELPER="paru"
   else
-    die "no AUR helper found (aura/yay/paru)"
+    warn "no AUR helper found, bootstrapping yay"
+    bootstrap_aur_helper
+    return
   fi
   info "AUR helper: $AUR_HELPER"
 }
@@ -115,11 +148,27 @@ build_jaiba() {
   info "building jaiba from source"
 
   local build_dir="$HOME/.local/share/jaiba-build"
+  local repo_url="https://github.com/damien1141/jaiba.git"
+
+  # If already built and binary exists, skip unless forced
+  if [[ -x "$HOME/.local/bin/jaiba" ]] && [[ ! -t 0 ]]; then
+    info "jaiba binary already exists, skipping build (non-interactive)"
+    return 0
+  fi
+
+  if [[ -t 0 ]] && [[ -x "$HOME/.local/bin/jaiba" ]]; then
+    read -rp "jaiba already installed, rebuild? [y/N]: " input || input="n"
+    if [[ ! "$input" =~ ^[Yy]$ ]]; then
+      info "skipping jaiba rebuild"
+      return 0
+    fi
+  fi
+
   rm -rf "$build_dir"
   mkdir -p "$build_dir"
 
   info "cloning jaiba repo"
-  git clone https://github.com/damien1141/jaiba.git "$build_dir" || die "jaiba git clone failed"
+  git clone "$repo_url" "$build_dir" || die "jaiba git clone failed"
 
   info "building jaiba in release mode"
   pushd "$build_dir" >/dev/null || die "cannot enter jaiba build dir"
@@ -230,8 +279,8 @@ backup_conflict() {
     mv "$dst" "$dest_dir/" || warn "backup failed for $dst"
   fi
 
-  info "moving $src -> $dst"
-  mv "$src" "$dst" || die "move failed: $src -> $dst"
+  info "copying $src -> $dst"
+  cp -a "$src" "$dst" || die "copy failed: $src -> $dst"
 }
 
 deploy_dotfiles() {
@@ -256,6 +305,7 @@ deploy_dotfiles() {
 
 main() {
   require_user
+  ensure_build_deps
   detect_aur_helper
   install_repo_packages
   install_aur_packages
