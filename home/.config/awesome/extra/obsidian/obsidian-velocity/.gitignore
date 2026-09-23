@@ -1,0 +1,23 @@
+# Lapis config (temporary)
+theme.config.json
+
+# vscode
+.vscode 
+
+# Intellij
+*.iml
+.idea
+
+# npm
+node_modules
+
+# expanded theme.css
+loose.css
+
+# Exclude sourcemaps
+*.map
+
+# Exclude macOS Finder (System Explorer) View States
+.DS_Store
+.dart_tool/
+

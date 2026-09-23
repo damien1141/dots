@@ -1,0 +1,11 @@
+{
+  "obsidian-velocity@@ss-section-news": true,
+  "obsidian-velocity-config@@prevent-exit": true,
+  "obsidian-velocity-config@@active-line-highlight": true,
+  "obsidian-velocity-config@@hide-bases-header": true,
+  "obsidian-velocity-config@@enable-dim-img": true,
+  "obsidian-velocity-config@@improve-pinned-tabs": true,
+  "obsidian-velocity@@color-highlight-rgb": "var(--highlight-red-rgb)",
+  "obsidian-velocity@@enable-special-text": true,
+  "obsidian-velocity@@theme-paint-dark": "velocity-dark"
+}

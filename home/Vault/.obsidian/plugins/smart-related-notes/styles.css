@@ -1,0 +1,491 @@
+/* =============================================================================
+   Related Notes — styles.css  (auto-loaded by the plugin)
+   A left-sidebar card stack of notes ranked by semantic similarity to the
+   active note. Theme-agnostic: built entirely on core Obsidian CSS variables so
+   it inherits the user's theme (light/dark, accent color, fonts).
+   ============================================================================= */
+
+.related-notes-view {
+  padding: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* === Header =================================================================
+   Fixed header + an independently-scrolling list. (A sticky header inside one
+   scroll container let cards render through it mid-scroll.) */
+.related-notes-view .rn-header {
+  flex: 0 0 auto;
+  padding: var(--size-4-3) var(--size-4-3) var(--size-4-2);
+  background-color: var(--background-secondary);
+  border-bottom: 1px solid var(--background-modifier-border);
+}
+
+.related-notes-view .rn-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--size-4-2);
+}
+
+.related-notes-view .rn-heading {
+  font-size: var(--font-ui-medium);
+  font-weight: var(--font-semibold);
+  color: var(--text-normal);
+}
+
+.related-notes-view .rn-refresh {
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.related-notes-view .rn-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--size-2-2);
+}
+.related-notes-view .rn-search-toggle,
+.related-notes-view .rn-links-toggle {
+  color: var(--text-muted);
+  cursor: pointer;
+}
+/* Active mode (e.g. linked-notes mode on) reads as accent so the toggle's state is clear. */
+.related-notes-view .rn-links-toggle.is-active {
+  color: var(--interactive-accent);
+}
+.related-notes-view .rn-search-row {
+  display: none;
+  margin-top: var(--size-2-2);
+}
+.related-notes-view .rn-search-row.is-visible {
+  display: block;
+}
+.related-notes-view .rn-search-input {
+  width: 100%;
+  height: 30px;
+  padding: 0 10px;
+  border: 1px solid var(--background-modifier-border);
+  border-radius: var(--radius-s);
+  background: var(--background-primary);
+  color: var(--text-normal);
+  font-size: var(--font-ui-small);
+}
+.related-notes-view .rn-search-input::placeholder {
+  color: var(--text-faint);
+}
+.related-notes-view .rn-search-input:focus {
+  border-color: var(--interactive-accent);
+  outline: none;
+}
+
+.related-notes-view .rn-subtitle {
+  margin-top: var(--size-2-1);
+  font-size: var(--font-ui-smaller);
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.related-notes-view .rn-based-on {
+  color: var(--text-normal);
+  font-weight: var(--font-medium);
+}
+
+.related-notes-view .rn-status {
+  margin-top: var(--size-2-1);
+  font-size: var(--font-ui-smaller);
+  color: var(--text-faint);
+}
+
+.related-notes-view .rn-status-error {
+  color: var(--text-error);
+}
+
+/* === Card stack ============================================================= */
+.related-notes-view .rn-list {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-4-2);
+  padding: var(--size-4-3);
+}
+
+.related-notes-view .rn-card {
+  padding: var(--size-4-2) var(--size-4-3);
+  border-radius: var(--radius-m);
+  background-color: var(--background-primary);
+  border: 1px solid var(--background-modifier-border);
+  cursor: pointer;
+  transition:
+    border-color 120ms ease,
+    background-color 120ms ease,
+    transform 120ms ease;
+}
+
+.related-notes-view .rn-card:hover {
+  border-color: var(--interactive-accent);
+  background-color: var(--background-modifier-hover);
+}
+
+.related-notes-view .rn-card:active {
+  transform: translateY(1px);
+}
+
+.related-notes-view .rn-card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--size-4-2);
+}
+
+.related-notes-view .rn-title {
+  font-size: var(--font-ui-small);
+  font-weight: var(--font-semibold);
+  color: var(--text-normal);
+  line-height: var(--line-height-tight);
+}
+
+/* === Similarity pill ======================================================== */
+.related-notes-view .rn-score {
+  flex: 0 0 auto;
+  font-size: var(--font-ui-smaller);
+  font-weight: var(--font-semibold);
+  line-height: 1;
+  padding: 3px 7px;
+  border-radius: var(--radius-s);
+  color: var(--text-on-accent);
+  background-color: var(--interactive-accent);
+}
+
+/* Keyword-fallback scores (the "~NN%" pills) read as muted, not accent, so they
+   are visually distinct from true semantic similarity. */
+.related-notes-view .rn-score-approx {
+  color: var(--text-muted);
+  background-color: var(--background-modifier-border);
+}
+
+/* === Why-related + connection pills ========================================= */
+.related-notes-view .rn-pills {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--size-2-2);
+  margin-top: var(--size-2-2);
+}
+
+/* Connection type: graph-connected ("Linked") vs discovered-by-meaning ("Related"). */
+.related-notes-view .rn-conn {
+  font-size: var(--font-ui-smaller);
+  font-weight: var(--font-medium);
+  line-height: 1;
+  padding: 2px 6px;
+  border-radius: var(--radius-s);
+  color: var(--text-muted);
+  background-color: var(--background-modifier-border);
+}
+
+.related-notes-view .rn-conn-linked {
+  color: var(--text-on-accent);
+  background-color: var(--interactive-accent);
+}
+
+/* Why-related reason (top shared tag, "Co-cited", "Similar text"). */
+.related-notes-view .rn-why {
+  font-size: var(--font-ui-smaller);
+  line-height: 1;
+  padding: 2px 6px;
+  border-radius: var(--radius-s);
+  color: var(--text-accent);
+  background-color: var(--background-secondary-alt);
+  border: 1px solid var(--background-modifier-border);
+}
+
+/* === Path + snippet ========================================================= */
+.related-notes-view .rn-path {
+  margin-top: var(--size-2-1);
+  font-size: var(--font-ui-smaller);
+  color: var(--text-faint);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.related-notes-view .rn-snippet {
+  margin-top: var(--size-2-2);
+  font-size: var(--font-ui-smaller);
+  color: var(--text-muted);
+  line-height: var(--line-height-tight);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Muted last-edited line. */
+.related-notes-view .rn-recency {
+  margin-top: var(--size-2-1);
+  font-size: var(--font-ui-smaller);
+  color: var(--text-faint);
+  font-variant-numeric: tabular-nums;
+}
+
+/* === Empty / placeholder ==================================================== */
+.related-notes-view .rn-empty {
+  padding: var(--size-4-4) var(--size-4-3);
+  text-align: center;
+  font-size: var(--font-ui-smaller);
+  color: var(--text-faint);
+}
+
+/* Settings: intro blurb + first-run "no model chosen" gate notice. */
+.rn-settings-intro {
+  margin-bottom: 1em;
+  line-height: 1.4;
+}
+.rn-settings-gate {
+  margin-bottom: 1em;
+  color: var(--text-accent);
+}
+
+/* Settings: collapsible groups. Only Setup opens by default, so the tab starts
+   as a short list of headings instead of one long scroll. Rows stay in the DOM
+   when collapsed, so Obsidian's settings search can still reach them. */
+.rn-sec {
+  border-top: 1px solid var(--background-modifier-border);
+}
+.rn-sec:last-of-type {
+  border-bottom: 1px solid var(--background-modifier-border);
+}
+.rn-sec-summary {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6em;
+  padding: 0.75em 0;
+  cursor: var(--cursor);
+  list-style: none;
+  color: var(--text-normal);
+}
+.rn-sec-summary::-webkit-details-marker {
+  display: none;
+}
+/* Disclosure triangle, rotated when open. Uses the same collapse-indicator
+   glyph Obsidian draws elsewhere so the section reads as native. */
+.rn-sec-summary::before {
+  content: "";
+  width: 0;
+  height: 0;
+  border-left: 5px solid currentColor;
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+  color: var(--text-faint);
+  transition: transform 100ms ease-in-out;
+}
+.rn-sec[open] > .rn-sec-summary::before {
+  transform: rotate(90deg);
+}
+.rn-sec-summary:hover {
+  color: var(--text-accent);
+}
+.rn-sec-title {
+  font-weight: var(--font-semibold);
+}
+.rn-sec-meta {
+  color: var(--text-faint);
+  font-size: var(--font-ui-smaller);
+}
+/* The first row inside a section already has the summary above it, so drop the
+   duplicated top border Obsidian puts on every .setting-item. */
+.rn-sec-body > .setting-item:first-child {
+  border-top: none;
+  padding-top: 0;
+}
+.rn-sec-body > .setting-item:last-child {
+  padding-bottom: 1em;
+}
+.rn-sec-note {
+  padding: 0.75em 0 0;
+}
+
+/* Settings: show the numeric value next to each slider. */
+.related-notes-slider-value {
+  min-width: 3.5em;
+  margin-right: 10px;
+  text-align: right;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+/* =============================================================================
+   Feature A — inline glow (CodeMirror 6 Decoration.mark).
+   A subtle, restyleable highlight on a phrase that matches an existing note,
+   inviting a one-click [[link]] conversion. Class-only (never collapses text),
+   built on core CSS variables so a theme/snippet can override it.
+   ============================================================================= */
+.srn-glow {
+  /* A slim blue underline: a subtle, non-intrusive hint that a concept has a note
+     and can be linked — and visually distinct from a real wikilink (which the theme
+     colours differently). No background/highlight, so it never distracts. */
+  /* A border rather than the text-decoration longhands: thickness, colour and
+     offset are only partially supported on the Electron older Obsidian builds
+     ship, and a bottom border draws the same slim rule everywhere. */
+  border-bottom: 1px solid var(--color-blue);
+  padding-bottom: 2px;
+  cursor: pointer;
+  transition: border-bottom-width 120ms ease;
+}
+
+.srn-glow:hover {
+  /* Gentle affordance on hover — just a slightly thicker underline. */
+  border-bottom-width: 2px;
+}
+
+/* =============================================================================
+   Feature B — smart `[[` suggester rows.
+   The "create new note" row reads as creation, not navigation; the semantic
+   badge is a muted relevance hint.
+   ============================================================================= */
+.srn-new-suggestion .suggestion-title {
+  display: flex;
+  align-items: center;
+  gap: var(--size-2-2);
+}
+
+.srn-new-suggestion .srn-new-icon {
+  display: inline-flex;
+  align-items: center;
+  color: var(--text-accent);
+}
+
+.srn-new-suggestion .suggestion-note {
+  color: var(--text-accent);
+}
+
+.suggestion-aux.srn-semantic-badge {
+  font-size: var(--font-ui-smaller);
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------------------------------------------------------------- vault map */
+.rn-map-view {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-4-2);
+  padding: var(--size-4-4);
+  overflow: auto;
+}
+
+.rn-map-header {
+  display: flex;
+  align-items: center;
+  gap: var(--size-4-2);
+}
+
+.rn-map-title {
+  font-size: var(--font-ui-large);
+  font-weight: var(--font-semibold);
+}
+
+.rn-map-refresh {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--size-2-2);
+  background: transparent;
+  box-shadow: none;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.rn-map-refresh:hover {
+  color: var(--text-normal);
+}
+
+.rn-map-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--size-2-2);
+}
+
+.rn-map-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--size-2-2);
+  padding: var(--size-2-1) var(--size-2-3);
+  border: 1px solid var(--background-modifier-border);
+  border-radius: var(--radius-l);
+  font-size: var(--font-ui-smaller);
+  color: var(--text-muted);
+  cursor: pointer;
+  user-select: none;
+}
+
+.rn-map-chip:hover {
+  border-color: var(--background-modifier-border-hover);
+  color: var(--text-normal);
+}
+
+/* A hidden cluster stays legible: dimmed and struck through, never invisible,
+   so it is obvious the filter is on rather than that notes have vanished. */
+.rn-map-chip.is-off {
+  opacity: 0.45;
+  text-decoration: line-through;
+}
+
+.rn-map-swatch {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex: 0 0 auto;
+}
+
+.rn-map-svg {
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--background-modifier-border);
+  border-radius: var(--radius-m);
+  background: var(--background-primary-alt);
+}
+
+.rn-map-dot {
+  cursor: pointer;
+  opacity: 0.8;
+  transition: opacity 80ms ease, r 80ms ease;
+}
+
+.rn-map-dot:hover {
+  opacity: 1;
+  r: 7;
+}
+
+/* The halo is what keeps a label readable where it overlaps its own points. */
+.rn-map-label {
+  fill: var(--text-normal);
+  font-size: 15px;
+  font-weight: var(--font-semibold);
+  paint-order: stroke;
+  stroke: var(--background-primary-alt);
+  stroke-width: 4px;
+  stroke-linejoin: round;
+  pointer-events: none;
+}
+
+.rn-map-empty,
+.rn-map-foot {
+  color: var(--text-muted);
+  font-size: var(--font-ui-smaller);
+}
+
+/* Wording similarity that lost to the link graph: the number is real, it just is
+   not what decided the position. Dotted underline marks it as needing the
+   tooltip, without hiding a measurement the reader may still want. */
+.rn-score.rn-score-linkranked {
+  opacity: 0.72;
+  border-bottom: 1px dotted var(--text-faint);
+  cursor: help;
+}

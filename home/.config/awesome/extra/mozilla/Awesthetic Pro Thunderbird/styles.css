@@ -1,0 +1,311 @@
+/* Awesthetic Pro - Cross-compatible Firefox & Thunderbird theme stylesheet */
+/* This file defines CSS variables that map to theme_experiment colors */
+
+:root {
+  /* Awesthetic Pro base colors */
+  --spaces-bg-color: rgb(15, 15, 17);
+  --spaces-button-active-bg-color: rgb(138, 180, 248);
+  --spaces-button-active-text-color: rgb(15, 15, 17);
+  --tree-view-bg: rgb(26, 26, 29);
+  --bg-color: rgb(15, 15, 17);
+  --button-primary-background-color: rgb(138, 180, 248);
+  --button-primary-text-color: rgb(15, 15, 17);
+  --tree-pane-background: rgb(26, 26, 29);
+  --tree-card-background: rgb(15, 15, 17);
+  --layout-background-0: rgb(15, 15, 17);
+  --layout-background-1: rgb(15, 15, 17);
+  --button-background-color: rgb(26, 26, 29);
+  --lwt-accent-color: rgb(26, 26, 29);
+  --list-container-background-selected-current: rgb(33, 33, 37);
+  --ab-cards-list-bg: rgb(15, 15, 17);
+  --in-content-box-info-background: rgb(15, 15, 17);
+  --calendar-view-toggle-background: rgb(26, 26, 29);
+  --calendar-view-toggle-hover-background: rgb(33, 33, 37);
+  --tabs-toolbar-background-color: rgb(15, 15, 17);
+  --color-gray-70: rgb(26, 26, 29);
+  --color-gray-50: rgb(33, 33, 37);
+
+  /* Additional semantic color mappings for Firefox UI */
+  --toolbar-bg: rgb(15, 15, 17);
+  --toolbar-text: rgb(204, 208, 217);
+  --frame-bg: rgb(15, 15, 17);
+  --tab-text: rgb(204, 208, 217);
+  --tab-line: rgb(138, 180, 248);
+  --tab-loading: rgb(88, 153, 121);
+  --tab-selected: rgb(15, 15, 17);
+  --tab-bg-text: rgb(204, 208, 217);
+  --tab-bg-separator: rgb(26, 26, 29);
+  --bookmark-text: rgb(204, 208, 217);
+  --toolbar-field-bg: rgb(26, 26, 29);
+  --toolbar-field-text: rgb(204, 208, 217);
+  --toolbar-field-highlight: rgb(138, 180, 248);
+  --toolbar-field-highlight-text: rgb(15, 15, 17);
+  --toolbar-field-border: rgb(15, 15, 17);
+  --toolbar-field-focus: rgb(26, 26, 29);
+  --toolbar-field-text-focus: rgb(204, 208, 217);
+  --toolbar-field-border-focus: rgb(138, 180, 248);
+  --toolbar-separator: rgb(26, 26, 29);
+  --sidebar-bg: rgb(15, 15, 17);
+  --sidebar-text: rgb(204, 208, 217);
+  --sidebar-highlight: rgb(138, 180, 248);
+  --sidebar-highlight-text: rgb(15, 15, 17);
+  --sidebar-border: rgb(26, 26, 29);
+  --popup-bg: rgb(26, 26, 29);
+  --popup-text: rgb(204, 208, 217);
+  --popup-border: rgb(15, 15, 17);
+  --popup-highlight: rgb(138, 180, 248);
+  --popup-highlight-text: rgb(15, 15, 17);
+  --button-active-bg: rgb(138, 180, 248);
+  --button-hover-bg: rgb(26, 26, 29);
+  --frame-inactive: rgb(26, 26, 29);
+  --icons-attention: rgb(156, 71, 76);
+  --icons: rgb(204, 208, 217);
+  --ntp-bg: rgb(15, 15, 17);
+  --ntp-text: rgb(204, 208, 217);
+}
+
+/* Firefox specific overrides */
+@-moz-document url-prefix(chrome://browser/content/browser.xhtml) {
+  :root {
+    --toolbar-bg: var(--bg-color);
+    --toolbar-text: var(--tab-text);
+    --frame-bg: var(--frame);
+  }
+}
+
+/* Thunderbird specific overrides */
+@-moz-document url-prefix(chrome://messenger/content/messenger.xhtml) {
+  :root {
+    --tree-bg: var(--tree-view-bg);
+    --tree-pane-bg: var(--tree-pane-background);
+    --folder-pane-bg: var(--tree-pane-background);
+    --thread-pane-bg: var(--tree-view-bg);
+    --message-list-bg: var(--tree-card-background);
+    --button-primary-bg: var(--button-primary-background-color);
+    --button-primary-text: var(--button-primary-text-color);
+    --calendar-toggle-bg: var(--calendar-view-toggle-background);
+    --calendar-toggle-hover: var(--calendar-view-toggle-hover-background);
+    --addrbook-cards-bg: var(--ab-cards-list-bg);
+  }
+
+  /* Thunderbird folder pane */
+  #folderTree {
+    background-color: var(--tree-pane-bg) !important;
+  }
+
+  /* Thunderbird thread pane */
+  #threadTree {
+    background-color: var(--tree-view-bg) !important;
+  }
+
+  /* Thunderbird message list */
+  #dbView {
+    background-color: var(--tree-card-bg) !important;
+  }
+
+  /* Thunderbird calendar view toggle */
+  .calendar-view-button {
+    background-color: var(--calendar-toggle-bg) !important;
+  }
+
+  .calendar-view-button:hover {
+    background-color: var(--calendar-toggle-hover) !important;
+  }
+
+  /* Thunderbird address book cards */
+  #cardView {
+    background-color: var(--addrbook-cards-bg) !important;
+  }
+}
+
+/* Shared UI elements for both Firefox and Thunderbird */
+menupopup, panel, tooltip {
+  background-color: var(--popup-bg) !important;
+  color: var(--popup-text) !important;
+  border: 1px solid var(--popup-border) !important;
+}
+
+menuitem:hover, menuitem[_moz-menuactive="true"] {
+  background-color: var(--popup-highlight) !important;
+  color: var(--popup-highlight-text) !important;
+}
+
+toolbar, .toolbar-primary {
+  background-color: var(--toolbar-bg) !important;
+  color: var(--toolbar-text) !important;
+}
+
+toolbarbutton {
+  background-color: var(--button-bg) !important;
+  color: var(--toolbar-text) !important;
+}
+
+toolbarbutton:hover {
+  background-color: var(--button-hover-bg) !important;
+}
+
+toolbarbutton[checked="true"], toolbarbutton[open="true"] {
+  background-color: var(--button-active-bg) !important;
+}
+
+#TabsToolbar {
+  background-color: var(--tabs-toolbar-bg) !important;
+}
+
+.tab-background {
+  background-color: var(--tab-selected) !important;
+}
+
+.tab-background[selected="true"] {
+  background-color: var(--tab-selected) !important;
+  border-bottom: 2px solid var(--tab-line) !important;
+}
+
+.tab-label {
+  color: var(--tab-text) !important;
+}
+
+.tab-icon-image {
+  fill: var(--icons) !important;
+}
+
+#sidebar-box {
+  background-color: var(--sidebar-bg) !important;
+  color: var(--sidebar-text) !important;
+  border-right: 1px solid var(--sidebar-border) !important;
+}
+
+#sidebar-box treechildren::-moz-tree-row(selected) {
+  background-color: var(--sidebar-highlight) !important;
+  color: var(--sidebar-highlight-text) !important;
+}
+
+#PersonalToolbar {
+  background-color: var(--toolbar-bg) !important;
+  border-bottom: 1px solid var(--toolbar-separator) !important;
+}
+
+.bookmark-item > .toolbarbutton-text {
+  color: var(--bookmark-text) !important;
+}
+
+#urlbar, .searchbar-textbox {
+  background-color: var(--toolbar-field-bg) !important;
+  color: var(--toolbar-field-text) !important;
+  border: 1px solid var(--toolbar-field-border) !important;
+}
+
+#urlbar[focused="true"], .searchbar-textbox[focused="true"] {
+  background-color: var(--toolbar-field-focus) !important;
+  color: var(--toolbar-field-text-focus) !important;
+  border-color: var(--toolbar-field-border-focus) !important;
+}
+
+#urlbar[pageproxystate="valid"] > #identity-box {
+  background-color: var(--toolbar-field-highlight) !important;
+  color: var(--toolbar-field-highlight-text) !important;
+}
+
+/* Button styling */
+button, .button {
+  background-color: var(--button-bg) !important;
+  color: var(--button-text) !important;
+  border: 1px solid var(--toolbar-separator) !important;
+}
+
+button:hover, .button:hover {
+  background-color: var(--button-hover-bg) !important;
+}
+
+button:active, .button:active, button[checked="true"], .button[checked="true"] {
+  background-color: var(--button-active-bg) !important;
+  color: var(--button-text) !important;
+}
+
+/* Primary buttons */
+button[primary="true"], .button-primary {
+  background-color: var(--button-primary-bg) !important;
+  color: var(--button-primary-text) !important;
+}
+
+button[primary="true"]:hover, .button-primary:hover {
+  background-color: var(--button-active-bg) !important;
+}
+
+/* Tree views (shared) */
+treechildren::-moz-tree-row {
+  background-color: var(--tree-view-bg) !important;
+}
+
+treechildren::-moz-tree-row(selected) {
+  background-color: var(--list-container-background-selected-current) !important;
+}
+
+treechildren::-moz-tree-row(selected, focus) {
+  background-color: var(--button-active-bg) !important;
+}
+
+treechildren::-moz-tree-cell-text {
+  color: var(--tab-text) !important;
+}
+
+/* Card layouts */
+.card, .card-container {
+  background-color: var(--tree-card-bg) !important;
+  border: 1px solid var(--color-gray-50) !important;
+}
+
+/* Layout backgrounds */
+#appcontent, #content, browser {
+  background-color: var(--layout-bg-0) !important;
+}
+
+/* In-content pages (preferences, about:addons, etc.) */
+#main, .content-container {
+  background-color: var(--layout-bg-1) !important;
+}
+
+/* Info boxes */
+.in-content-box-info {
+  background-color: var(--in-content-box-info-background) !important;
+  border-color: var(--color-gray-50) !important;
+}
+
+/* Scrollbars */
+scrollbar, scrollcorner {
+  background-color: var(--bg-color) !important;
+}
+
+scrollbar thumb {
+  background-color: var(--color-gray-50) !important;
+  border: 2px solid var(--bg-color) !important;
+}
+
+scrollbar thumb:hover {
+  background-color: var(--color-gray-70) !important;
+}
+
+/* Input fields */
+input, textarea, select {
+  background-color: var(--toolbar-field-bg) !important;
+  color: var(--toolbar-field-text) !important;
+  border: 1px solid var(--toolbar-field-border) !important;
+}
+
+input:focus, textarea:focus, select:focus {
+  background-color: var(--toolbar-field-focus) !important;
+  color: var(--toolbar-field-text-focus) !important;
+  border-color: var(--toolbar-field-border-focus) !important;
+  outline: none !important;
+}
+
+/* Checkboxes and radio buttons */
+checkbox, radio {
+  accent-color: var(--lwt-accent-color) !important;
+}
+
+/* Focus rings */
+*:focus-visible {
+  outline: 2px solid var(--tab-line) !important;
+  outline-offset: 2px !important;
+}

@@ -1,0 +1,26 @@
+name = "awesthetic-pro"
+author = "Damien"
+version = 1
+
+[colors]
+background = "#0F0F11"
+text = "#CCD0D9"
+
+border = "#212125"
+header = "#8AB4F8"
+accent = "#8AB4F8"
+
+warning = "#F85E4D"
+error = "#9C474C"
+success = "#589979"
+
+selection_fg = "#CCD0D9"
+selection_bg = "#8AB4F8"
+
+claws = "#8AB4F8"
+claws_light = "#8AB4F8"
+claws_shadow = "#589979"
+
+shell = "#212125"
+shell_light = "#1a1a1d"
+shell_shadow = "#0F0F11"

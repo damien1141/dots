@@ -1,0 +1,29 @@
+{
+    "colors": {
+        "AlternateBase": "#212125",
+        "Base": "#0F0F11",
+        "BrightText": "#9C474C",
+        "Button": "#1a1a1d",
+        "ButtonText": "#ccd0d9",
+        "Highlight": "#8AB4F8",
+        "HighlightedText": "#1a1a1d",
+        "Link": "#8AB4F8",
+        "Text": "#ccd0d9",
+        "ToolTipBase": "#EBF0FF",
+        "ToolTipText": "#ccd0d9",
+        "Window": "#1a1a1d",
+        "WindowText": "#ccd0d9",
+        "fadeAmount": 0.5,
+        "fadeColor": "#212125"
+    },
+    "logColors": {
+        "Launcher": "#8AB4F8",
+        "Error": "#9C474C",
+        "Warning": "#F85E4D",
+        "Debug": "#589979",
+        "FatalHighlight": "#9C474C",
+        "Fatal": "#0F0F11"
+    },
+    "name": "Awesthetic Pro",
+    "widgets": "Fusion"
+}

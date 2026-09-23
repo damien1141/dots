@@ -1,0 +1,53 @@
+{
+  "manifest_version": 2,
+  "name": "Awesthetic Pro",
+  "version": "1.1",
+  "applications": {
+    "gecko": {
+      "id": "{a7b3c9d1-4e5f-6a8b-9c0d-1e2f3a4b5c6d}",
+      "strict_min_version": "60.0"
+    }
+  },
+  "description": "Awesthetic Pro - Firefox theme",
+  "icons": {
+    "16": "images/icon16.png",
+    "48": "images/icon48.png",
+    "128": "images/icon128.png"
+  },
+  "theme": {
+    "properties": {
+      "additional_backgrounds_alignment": [
+        "top"
+      ],
+      "additional_backgrounds_tiling": [
+        "repeat"
+      ]
+    },
+    "colors": {
+      "toolbar": "rgb(15, 15, 17)",
+      "toolbar_text": "rgb(204, 208, 217)",
+      "frame": "rgb(15, 15, 17)",
+      "tab_background_text": "rgb(204, 208, 217)",
+      "toolbar_field": "rgb(26, 26, 29)",
+      "toolbar_field_text": "rgb(204, 208, 217)",
+      "tab_line": "rgb(138, 180, 248)",
+      "popup": "rgb(15, 15, 17)",
+      "popup_text": "rgb(204, 208, 217)",
+      "button_background_active": "rgb(26, 26, 29)",
+      "button_background_hover": "rgb(26, 26, 29)",
+      "frame_inactive": "rgb(26, 26, 29)",
+      "icons_attention": "rgb(156, 71, 76)",
+      "icons": "rgb(138, 180, 248)",
+      "ntp_background": "rgb(15, 15, 17)",
+      "ntp_text": "rgb(204, 208, 217)",
+      "popup_border": "rgb(15, 15, 17)",
+      "popup_highlight_text": "rgb(204, 208, 217)",
+      "popup_highlight": "rgb(33, 33, 37)",
+      "sidebar_border": "rgb(15, 15, 17)",
+      "sidebar_highlight_text": "rgb(204, 208, 217)",
+      "sidebar_highlight": "rgb(33, 33, 37)",
+      "sidebar_text": "rgb(204, 208, 217)",
+      "tab_loading": "rgb(88, 153, 121)"
+    }
+  }
+}

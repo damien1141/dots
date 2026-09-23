@@ -1,0 +1,74 @@
+#!/usr/bin/env bash
+
+#  _____ _     _           
+# |  _  |_|___| |_ ___ ___ 
+# |   __| |  _| '_| -_|  _|
+# |__|  |_|___|_,_|___|_|  
+#                          
+# Simple color picker script
+# Source: https://github.com/saimoomedits/dotfiles
+
+
+# 1. Pick the color
+# ~~~~~~~~~~~~~~~~~
+# Try xcolor first (it's faster and more modern), fall back to gpick
+if command -v xcolor >/dev/null 2>&1; then
+    CMD=$(xcolor)
+elif command -v gpick >/dev/null 2>&1; then
+    CMD=$(gpick --no-newline -pso)
+else
+    notify-send -a "Color picker" -u critical "Error" "Neither xcolor nor gpick is installed."
+    exit 1
+fi
+
+# Exit gracefully if the user cancels the picker (e.g., presses Escape)
+if [ -z "$CMD" ]; then
+    exit 0
+fi
+
+# Ensure the color starts with '#' for ImageMagick compatibility
+if [[ "$CMD" != \#* ]]; then
+    CMD="#$CMD"
+fi
+
+
+# 2. Temporary file
+# ~~~~~~~~~~~~~~~~~
+# Using mktemp prevents issues with '#' in the filename (which breaks notify-send icons)
+# and avoids race conditions if the script is run multiple times.
+TMP=$(mktemp /tmp/color_picker_XXXXXX.png)
+
+
+# 3. Convert and Copy
+# ~~~~~~~~~~~~~~~~~~~
+# Create a small image of the picked color for the notification
+if command -v convert >/dev/null 2>&1; then
+    convert -size 120x120 xc:"$CMD" "$TMP"
+else
+    # Fallback if ImageMagick is missing: use a default system icon
+    TMP="dialog-information"
+fi
+
+# Copy the hex code to the clipboard (supports Wayland and X11)
+if command -v wl-copy >/dev/null 2>&1 && [ -n "$WAYLAND_DISPLAY" ]; then
+    printf "%s" "$CMD" | wl-copy
+elif command -v xclip >/dev/null 2>&1; then
+    printf "%s" "$CMD" | xclip -selection clipboard
+elif command -v xsel >/dev/null 2>&1; then
+    printf "%s" "$CMD" | xsel -ib
+fi
+
+
+# 4. Send notification
+# ~~~~~~~~~~~~~~~~~~~~
+notify-send -a "Color picker" \
+        -i "$TMP" \
+        -t 2000 \
+        "Color Picked!" "$CMD"
+
+# 5. Cleanup
+# ~~~~~~~~~~
+# Delete the temporary image after a few seconds so the notification daemon has time to load it
+if [ -f "$TMP" ]; then
+    (sleep 3 && rm -f "$TMP") &
+fi

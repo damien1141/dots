@@ -1,0 +1,37 @@
+{"_id":"animationSpeed","value":145}
+{"_id":"appFont","value":"system"}
+{"_id":"backendPreference","value":"local"}
+{"_id":"baseTheme","value":"custom:79e1af59-fa00-4ee8-8750-9a35ab0c1578"}
+{"_id":"blurThumbnails","value":false}
+{"_id":"bounds","value":{"x":5,"y":5,"width":2065,"height":1327,"maximized":false,"fullScreen":false}}
+{"_id":"channelSettingsSyncMigration","value":true}
+{"_id":"confirmCloseApp","value":false}
+{"_id":"contextMenuSearchEngines","value":"[{\"id\":\"duckduckgo\",\"name\":\"DuckDuckGo\",\"url\":\"https://duckduckgo.com/?q=%s\",\"enabled\":true},{\"id\":\"startpage\",\"name\":\"Startpage\",\"url\":\"https://www.startpage.com/sp/search?query=%s\",\"enabled\":false},{\"id\":\"qwant\",\"name\":\"Qwant\",\"url\":\"https://www.qwant.com/?q=%s\",\"enabled\":false},{\"id\":\"brave\",\"name\":\"Brave Search\",\"url\":\"https://search.brave.com/search?q=%s\",\"enabled\":false}]"}
+{"_id":"defaultCaptionSettings","value":"{\"textColor\":\"#ccd0d9\",\"backgroundColor\":\"#0f0f11\",\"backgroundOpacity\":0.85,\"fontScale\":1,\"verticalPosition\":0,\"anchor\":\"bottom-center\",\"edgeStyle\":\"dropShadow\",\"edgeColor\":\"#0f0f11\"}"}
+{"_id":"defaultInvidiousInstance","value":"https://invidious.nerdvpn.de"}
+{"_id":"defaultQuality","value":"1080"}
+{"_id":"defaultViewingMode","value":"theatre"}
+{"_id":"enableCaptionTranslations","value":false}
+{"_id":"enableSubtitlesByDefault","value":true}
+{"_id":"externalPlayer","value":"mpv"}
+{"_id":"hideChannelShorts","value":true}
+{"_id":"hideSubscriptionsShorts","value":true}
+{"_id":"hideTrendingVideos","value":true}
+{"_id":"historyWatchedStatusMigrated","value":true}
+{"_id":"iconPack","value":"remix"}
+{"_id":"lastUsedVersion","value":"0.32.0"}
+{"_id":"listType","value":"list"}
+{"_id":"onlyShowLatestFromChannel","value":true}
+{"_id":"onlyShowLatestFromChannelNumber","value":2}
+{"_id":"quickBookmarkTargetPlaylistId","value":"favorites"}
+{"_id":"syncServerEnabled","value":false}
+{"_id":"thumbnailPreference","value":"start"}
+{"_id":"thumbnailSize","value":120}
+{"_id":"toastPosition","value":"bottom-right"}
+{"_id":"tutorialAudience","value":"completed"}
+{"_id":"useDeArrowThumbnails","value":false}
+{"_id":"useDeArrowTitles","value":true}
+{"_id":"useReturnYouTubeDislikes","value":true}
+{"_id":"useSponsorBlock","value":true}
+{"_id":"videoVolumeMouseScroll","value":true}
+{"_id":"ytDlpDownloadCustomArgs","value":"--extractor-args \"youtube:player_client=mweb\""}

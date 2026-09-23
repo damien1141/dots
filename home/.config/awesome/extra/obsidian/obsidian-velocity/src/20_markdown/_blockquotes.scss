@@ -1,0 +1,40 @@
+.el-blockquote > blockquote,
+.markdown-rendered blockquote {
+	position: relative;
+	align-items: center;
+	border: none;
+	padding-inline: 1.75em 0;
+}
+body:not(.enable-special-text) blockquote {
+	--bold-color: var(--blockquote-color);
+	--italic-color: var(--blockquote-color);
+	margin-block: var(--block-padding);
+}
+.HyperMD-quote,
+.markdown-rendered blockquote,
+.cm-blockquote-border {
+	--bold-color: var(--color-base-80);	
+	--italic-color: var(--blockquote-color);
+	--math-color: color-mix(in oklab, var(--blockquote-color), var(--color-base-80));
+	&::before {
+		content: '';
+		contain: content;
+		position: absolute;
+		height: 100%;
+		left: 0;
+		width: var(--blockquote-border-thickness);
+		background-color: var(--blockquote-border-color);
+		border-radius: var(--radius-m);
+		-electron-corner-smoothing: var(--corner-smoothing);
+	}
+}
+.HyperMD-quote > .cm-blockquote-border::before {
+	left: unset;
+	width: 1px;
+}
+.HyperMD-quote + .HyperMD-quote {
+	&::before {
+		height: calc(100% + 2px);
+		margin-block: -2px;
+	}
+}

@@ -1,0 +1,23 @@
+# dsh-context-sieve bundle patch: mount the plugin row into the profile
+# composition tree.
+#
+# `dsh plugin --profile <name> add dsh-context-sieve` auto-initializes the
+# profile, pnpm-installs this package, and appends it to the profile bundles
+# (this package.json declares `dsh.bundle.patch`). At boot, app-boot applies
+# every bundle's patch list in order over the empty root; this insert list is
+# what mounts the sieve row.
+#
+# All config stays at schema defaults. To tune caps/maxEvents/minKeepTokens,
+# override this row's config by id in the profile's own cordis.patch.yml user
+# layer — do NOT insert a second same-id row.
+- insert:
+    - id: sieve
+      name: 'dsh-context-sieve'
+      config:
+        caps:
+          toolResults: 12000
+          assistantText: 8000
+          codeBlocks: 16000
+          commands: 4000
+        maxEvents: 500
+        minKeepTokens: 400

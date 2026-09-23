@@ -1,0 +1,36 @@
+# Existing KDBX database to open.
+default_database = "~/.local/share/rama/default.kdbx"
+
+# Optional KeePass keyfile. Leave this unset for password-only databases.
+# The master password is always still required.
+# keyfile = "~/.local/share/rama/default.keyx"
+
+# Seconds of inactivity before Jaiba locks the database.
+auto_lock = 300
+
+# Seconds before a value copied by Jaiba is cleared from the clipboard.
+clipboard_timeout = 15
+
+# Name of a theme installed in ~/.config/rama/themes/.
+theme = "awesthetic-pro"
+
+# Sort mode for the entry index.
+# "smart" ranks by recency, security warnings, and active usage signals.
+# "name" sorts alphabetically, "recent" by last modification, "reuse" by credential reuse risk.
+# "lastcopied" sorts by when the entry was last copied to clipboard (most recent first).
+sort_mode = "smart"
+
+# How groups/folders are displayed in the entry index.
+# "shown" - groups appear above entries (default)
+# "hidden" - groups are not displayed; only entries are shown
+# "bottom" - entries appear first, groups at the bottom
+# "mixed" - groups are sorted alongside entries
+group_display = "shown"
+
+# Logo style on the login screen.
+# "crab" - the crab ASCII art (only option)
+logo_style = "crab"
+
+# Fingerprint unlock via fprintd. Requires fprintd installed and at least one fingerprint enrolled.
+# fingerprint_enabled = false
+# fingerprint_device = ""  # optional; leave empty to use default device

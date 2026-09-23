@@ -1,0 +1,38 @@
+# Maintainer: Pombo <https://github.com/pomboverso>
+
+pkgname=jaiba
+pkgver=2026.7.0
+pkgrel=1
+pkgdesc="Terminal password manager for KeePass vaults"
+arch=("x86_64" "aarch64")
+url="https://github.com/rama-oi/jaiba"
+license=("GPL-3.0-or-later")
+depends=(
+  "gcc-libs"
+  "wayland-client"
+  "libx11"
+  "dbus"
+)
+makedepends=(
+  "cargo"
+  "rust"
+  "git"
+)
+optdepends=(
+  "fprintd: fingerprint unlock support"
+)
+source=("${pkgname}-${pkgver}::git+https://github.com/rama-oi/jaiba.git#tag=v${pkgver}")
+sha256sums=("SKIP")
+
+build() {
+  cd "${pkgname}-${pkgver}"
+
+  cargo build --release --locked
+}
+
+package() {
+  cd "${pkgname}-${pkgver}"
+
+  install -Dm0755 "target/release/jaiba" "${pkgdir}/usr/sbin/jaiba"
+  install -Dm0644 "license.md" "${pkgdir}/usr/share/licenses/${pkgname}/license.md"
+}

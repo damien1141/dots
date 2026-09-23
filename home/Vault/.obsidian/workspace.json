@@ -1,0 +1,266 @@
+{
+  "main": {
+    "id": "f8b3d28b73452598",
+    "type": "split",
+    "children": [
+      {
+        "id": "71608cb67e31f4a2",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "0a67b9ceebd68843",
+            "type": "leaf",
+            "pinned": true,
+            "state": {
+              "type": "graph",
+              "state": {},
+              "pinned": true,
+              "icon": "lucide-git-fork",
+              "title": "Graph view"
+            }
+          },
+          {
+            "id": "83e9f2396734e091",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "The book/sex/desires.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "desires"
+            }
+          },
+          {
+            "id": "7824e1f6f90a7696",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "The book/peace/pedestal.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "pedestal"
+            }
+          }
+        ],
+        "currentTab": 1
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "4342ddc4501052d8",
+    "type": "split",
+    "children": [
+      {
+        "id": "928805f8846fff26",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "cd597950306a6fe9",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "byCreatedTime",
+                "autoReveal": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "813fde0c5b87e1af",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          },
+          {
+            "id": "d9cf5d078615b47b",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 272.50000381469727
+  },
+  "right": {
+    "id": "727732762fed833b",
+    "type": "split",
+    "children": [
+      {
+        "id": "890a2f30e4dcf369",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "8a7ceca44875636a",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "30_Daily/flat feet.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks"
+            }
+          },
+          {
+            "id": "8cd0acf0386c18e9",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "30_Daily/AGENCY/auto cold email prompt.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from auto cold email prompt"
+            }
+          },
+          {
+            "id": "36a73bce86aa89cb",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "401c1aee70bea659",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
+            }
+          },
+          {
+            "id": "64783bb894fd6b82",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "20_Notes/projects/CAR/2004 Lexus ls430 UL trim.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline"
+            }
+          },
+          {
+            "id": "35e0776329152df4",
+            "type": "leaf",
+            "state": {
+              "type": "smart-related-notes",
+              "state": {},
+              "icon": "sparkles",
+              "title": "Smart related notes"
+            }
+          }
+        ],
+        "currentTab": 5
+      }
+    ],
+    "direction": "horizontal",
+    "width": 319.51495361328125
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false,
+      "cfr-find:CFR Find: Search the vault": false,
+      "smart-related-notes:Smart related notes": false
+    }
+  },
+  "active": "83e9f2396734e091",
+  "lastOpenFiles": [
+    "20_Notes/Untitled.md",
+    "20_Notes/Sovereign Genomics.md",
+    "Culinary Grimoire/recipes/foundation/overkill appetizers.md",
+    "Culinary Grimoire/ideas/Sweet Potato Chip Recipe.md",
+    "Culinary Grimoire/ideas/menudo beef stew hybrid.md",
+    "Culinary Grimoire/README.md",
+    "Culinary Grimoire/recipes/heritage/birria-de-res.md",
+    "Culinary Grimoire/recipes/global-comfort/scallion-oil-noodles.md",
+    "Culinary Grimoire/recipes/foundation/reverse-sear-steak.md",
+    "Culinary Grimoire/recipes/foundation/butter-poached-lobster.md",
+    "Culinary Grimoire/recipes/foundation/real-hot-chocolate.md",
+    "Culinary Grimoire/recipes/foundation/overkill deserts.md",
+    "Culinary Grimoire/recipes/global-comfort/kfc v2.md",
+    "Culinary Grimoire/recipes/global-comfort/tonkotsu-ramen.md",
+    "Culinary Grimoire/recipes/global-comfort/cacio-e-pepe.md",
+    "Culinary Grimoire/recipes/global-comfort/korean-fried-chicken.md",
+    "Culinary Grimoire/recipes/global-comfort/thai-massaman-curry.md",
+    "Culinary Grimoire/recipes/global-comfort/xiaolongbao.md",
+    "Culinary Grimoire/ideas",
+    "The book/peace/pedestal.md",
+    "The book/pain/The skyscraper.md",
+    "The book/pain/chapmans room.md",
+    "The book/pain/chapmans day.md",
+    "The book/peace/entanglement.md",
+    "The book/peace/hope.md",
+    "The book/peace/tuckles and fuckles.md",
+    "The book/peace/pickles.md",
+    "The book/peace",
+    "The book/advice",
+    "The book/respect",
+    "The book/sex",
+    "The book/love",
+    "The book/pain",
+    "The book",
+    "30_Daily/AGENCY/phase 2",
+    "20_Notes/School/Business law 1"
+  ]
+}

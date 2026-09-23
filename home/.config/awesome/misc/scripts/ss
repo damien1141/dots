@@ -1,0 +1,109 @@
+#!/usr/bin/env bash
+# Improved Screenshot Utility for AwesomeWM (X11 only)
+# Captures clean screenshots, safely handles picom, and copies to clipboard.
+
+set -euo pipefail
+
+# ─── Configuration ───────────────────────────────────────────────────────────
+SCREENSHOT_DIR="${SCREENSHOT_DIR:-$HOME/Imágenes/Screenshots}"
+MODE="${1:-area}"
+
+# ─── Validation & Dependencies ───────────────────────────────────────────────
+case "$MODE" in
+    area|full) ;;
+    *) printf "Usage: %s [area|full]\n" "$0" >&2; exit 1 ;;
+esac
+
+command -v maim >/dev/null || { echo "Error: 'maim' is not installed." >&2; exit 1; }
+
+# ─── Setup Paths ─────────────────────────────────────────────────────────────
+TIMESTAMP=$(date +%Y%m%d_%H%M%S)
+FILENAME="screenshot_${TIMESTAMP}.png"
+PATH_TO_FILE="$SCREENSHOT_DIR/$FILENAME"
+mkdir -p "$SCREENSHOT_DIR"
+
+# ─── Picom Handling ──────────────────────────────────────────────────────────
+PICOM_WAS_RUNNING=false
+if command -v picom >/dev/null && pgrep -x picom >/dev/null; then
+    PICOM_WAS_RUNNING=true
+fi
+
+restore_picom() {
+    if $PICOM_WAS_RUNNING; then
+        picom --daemon >/dev/null 2>&1 &
+    fi
+}
+# Ensures picom restarts even if maim fails or you press Esc
+trap restore_picom EXIT
+
+if $PICOM_WAS_RUNNING; then
+    killall picom >/dev/null 2>&1 || true
+    sleep 0.2
+fi
+
+# ─── Capture ─────────────────────────────────────────────────────────────────
+if [ "$MODE" = "area" ]; then
+    # -s: select area, -u: hide cursor, -b: border, -c: selection color
+    maim -s -u -b 2 -c "0.5,0.5,0.5,0.8" "$PATH_TO_FILE"
+else
+    maim -u "$PATH_TO_FILE"
+fi
+
+if [[ ! -f "$PATH_TO_FILE" ]]; then
+    echo "Error: Screenshot capture failed or was cancelled." >&2
+    exit 1
+fi
+
+# ─── Clipboard Copy ──────────────────────────────────────────────────────────
+CLIPBOARD_STATUS=""
+if command -v xclip >/dev/null; then
+    if xclip -selection clipboard -t image/png < "$PATH_TO_FILE" &>/dev/null; then
+        CLIPBOARD_STATUS=" (copied to clipboard)"
+    else
+        CLIPBOARD_STATUS=" (clipboard copy failed)"
+    fi
+elif command -v wl-copy >/dev/null; then
+    if wl-copy -t image/png < "$PATH_TO_FILE" &>/dev/null; then
+        CLIPBOARD_STATUS=" (copied to clipboard)"
+    else
+        CLIPBOARD_STATUS=" (clipboard copy failed)"
+    fi
+else
+    CLIPBOARD_STATUS=" (no clipboard tool found)"
+fi
+
+# ─── Notification & Output ───────────────────────────────────────────────────
+if command -v notify-send >/dev/null; then
+    NOTIFY_ICON="$PATH_TO_FILE"
+    THUMB_FILE=""
+    
+    # Optional: Generate a thumbnail to keep the notification size reasonable.
+    # Supports both ImageMagick v7 (magick) and v6 (convert).
+    IMAGEMAGICK_CMD=""
+    if command -v magick >/dev/null; then
+        IMAGEMAGICK_CMD="magick"
+    elif command -v convert >/dev/null; then
+        IMAGEMAGICK_CMD="convert"
+    fi
+
+    if [[ -n "$IMAGEMAGICK_CMD" ]]; then
+        THUMB_FILE="${PATH_TO_FILE%.png}_thumb.png"
+        # Resize to a width of 300px, maintaining aspect ratio
+        if $IMAGEMAGICK_CMD "$PATH_TO_FILE" -resize 300x "$THUMB_FILE" 2>/dev/null; then
+            NOTIFY_ICON="$THUMB_FILE"
+        fi
+    fi
+
+    # Send notification. We use -i for the icon path, and the 'image-path' hint 
+    # which is explicitly supported by modern daemons like Dunst and Mako for inline images.
+    notify-send -u normal -i "$NOTIFY_ICON" \
+                --hint=string:image-path:"$NOTIFY_ICON" \
+                -t 5000 "Screenshot" "Saved to: $PATH_TO_FILE$CLIPBOARD_STATUS" || true
+
+    # Cleanup thumbnail if it was created
+    if [[ -n "$THUMB_FILE" && -f "$THUMB_FILE" ]]; then
+        rm -f "$THUMB_FILE"
+    fi
+fi
+
+printf "%s\n" "$PATH_TO_FILE"

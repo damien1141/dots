@@ -1,0 +1,237 @@
+.smart-connections-visualizer-link {
+    stroke: #ccd0d9;
+    stroke-opacity: 0.6;
+    cursor: pointer;
+}
+.smart-connections-visualizer-label {
+    pointer-events: none;
+    fill: #ccd0d9;
+    font-family: 'Inter';
+}
+.smart-connections-visualizer-link-label {
+    font-family: 'Inter';
+    fill: #8AB4F8;
+}
+
+.smart-connections-visualizer-node:hover {
+    stroke: #ccd0d9;
+    cursor: pointer;
+    stroke-width: 0.5px;
+}
+
+
+svg .smart-connections-visualizer-nodes circle {
+    cursor: pointer;
+}
+
+.smart-connections-visualizer-node {
+    cursor: pointer;
+}
+
+.smart-connections-visualizer-settings-icon {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    cursor: pointer;
+    font-size: 24px;
+    color: #ccd0d9;
+    z-index: 999; /* Ensure the icon stays above other elements */
+}
+.sc-visualizer-dropdown-menu {
+    font-family: 'Cascadia';
+    display: none;
+    position: absolute;
+    top: 13px; /* Position on top of the settings icon */
+    right: 10px;
+    background-color: #1a1a1d;
+    border: 1px solid #212125;
+    border-radius: 5px;
+    padding: 10px;
+    width: 300px;
+    z-index: 1000; /* Ensure the menu stays above other elements */
+}
+.sc-visualizer-dropdown-menu {
+    background-color: rgba(26, 26, 29, 0.95) !important;
+}
+
+.sc-visualizer-dropdown-menu.visible {
+    display: block !important;
+}
+.sc-visualizer-dropdown-menu.open {
+    display: block !important;
+}
+.smart-connections-visualizer-menu-header {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 5px;
+    font-family: sans-serif;
+}
+.smart-connections-visualizer-menu-header .smart-connections-visualizer-icon {
+    cursor: pointer;
+    font-size: 19px;
+    color: #ccd0d9;
+    margin-left: 10px;
+    margin-top: -2px;
+}
+.smart-connections-visualizer-menu-header .smart-connections-visualizer-icon:hover {
+    color: #8AB4F8;
+}
+.smart-connections-visualizer-accordion-item {
+    margin-bottom: 10px;
+    color: #ccd0d9;
+}
+
+.smart-connections-visualizer-slider {
+    width: 100% !important;
+}
+
+.smart-connections-visualizer-slider-container {
+    margin-bottom: 8px;
+}
+
+.smart-connections-visualizer-score-threshold-label {
+    text-wrap: nowrap;
+}
+
+#smart-connections-visualizer-refresh-icon {
+    font-size: 28px;
+    margin-top: -2px;
+    width: 20px;
+    height: 20px;
+    display: flex;
+}
+
+.smart-connections-visualizer-lucide-x {
+    height: 24px !important;
+    width: 24px !important;
+}
+
+.smart-connections-visualizer-settings-icon {
+    -webkit-app-region: no-drag;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 1px;
+    color: #8AB4F8;
+    transition: opacity 0.15s ease-in-out;
+    height: auto;
+    border: 1px solid #212125;
+    position: absolute;
+    padding: 8px;
+    top: 14px;
+    right: 14px;
+}
+
+.smart-connections-visualizer-accordion-header {
+    cursor: pointer;
+    background-color: #212125;
+    color: #ccd0d9;
+    padding: 10px;
+    border-radius: 5px;
+    display: block;
+    align-items: center;
+}
+.smart-connections-visualizer-accordion-header:hover {
+    background-color: #2a2a2e;
+}
+.smart-connections-visualizer-accordion-content {
+    display: none;
+    padding: 10px;
+    background-color: #1a1a1d;
+    border-radius: 5px;
+}
+.smart-connections-visualizer-accordion-content.show {
+    display: block;
+}
+.smart-connections-visualizer-dropdown-indicator {
+    width: 16px;
+    height: 16px;
+    margin-right: 8px;
+    vertical-align: middle;
+}
+
+.smart-connections-visualizer-radio-container {
+    margin-top: 10px;
+}
+
+.smart-connections-visualizer-radio-container label {
+    margin-right: 10px;
+    color: #ccd0d9;
+}
+
+.smart-connections-visualizer-settings-item-content-label {
+    margin-right: 20px;
+}
+
+.smart-connections-visualizer-selection-box {
+    stroke: #8AB4F8;
+    stroke-width: 1;
+    fill: rgba(138, 180, 248, 0.3);
+}
+
+/* Styles for the legend container */
+.smart-connections-visualizer-legend-container {
+    width: 295px;
+    border-collapse: collapse;
+    background-color: #1a1a1d;
+    color: #ccd0d9;
+    position: absolute;
+    top: 14;
+    left: 10;
+}
+
+/* Styles for the legend header */
+.smart-connections-visualizer-legend-header {
+    display: flex;
+    background-color: #212125;
+    text-align: left;
+}
+
+/* Styles for each header cell in the legend */
+.smart-connections-visualizer-legend-header div {
+    padding: 8px;
+}
+
+/* Styles for each row in the legend */
+.smart-connections-visualizer-legend-row {
+    display: flex;
+    align-items: center;
+}
+
+/* Alternate row coloring for better readability */
+.smart-connections-visualizer-legend-row:nth-child(even) {
+    background-color: #212125;
+}
+
+.smart-connections-visualizer-legend-row:nth-child(odd) {
+    background-color: #1a1a1d;
+}
+
+/* Styles for each cell in the row */
+.smart-connections-visualizer-legend-row div {
+    padding: 8px;
+}
+
+/* Styles for the color picker input */
+.smart-connections-visualizer-legend-color-picker {
+    width: 30px;
+    height: 30px;
+    border: none;
+    cursor: pointer;
+}
+
+.smart-connections-visualizer-variable-col {
+    flex: 2;
+}
+
+.smart-connections-visualizer-count-col {
+    flex: 1;
+    text-align: center;
+}
+
+.smart-connections-visualizer-color-col {
+    flex: 1;
+    text-align: center;
+}

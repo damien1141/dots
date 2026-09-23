@@ -1,0 +1,175 @@
+{
+  "is_obsidian_vault": true,
+  "smart_blocks": {
+    "embed_blocks": true,
+    "min_chars": 10000
+  },
+  "smart_sources": {
+    "single_file_data_path": ".smart-env/smart_sources.json",
+    "min_chars": 200,
+    "embed_model": {
+      "adapter": "ollama",
+      "transformers": {
+        "legacy_transformers": false,
+        "model_key": "TaylorAI/bge-micro-v2"
+      },
+      "TaylorAI/bge-micro-v2": {},
+      "ollama": {
+        "model_key": "hf.co/benvezzani/nomic-embed-text-v2-moe-Q4_K_M-GGUF:q4_k_m",
+        "host": "http://localhost:11434"
+      },
+      "hf.co/benvezzani/nomic-embed-text-v2-moe-Q4_K_M-GGUF:q4_k_m": {},
+      "hf.co/zenmagnets/Nemotron-3-Embed-1B-Q4_K_M-GGUF:q4_k_m": {}
+    },
+    "excluded_headings": "",
+    "file_exclusions": "Untitled",
+    "folder_exclusions": "99_Archive"
+  },
+  "ribbon_icons": {
+    "connections": true,
+    "random_note": false
+  },
+  "smart_view_filter": {
+    "render_markdown": true,
+    "show_full_path": false,
+    "exclude_blocks_from_source_connections": false,
+    "exclude_frontmatter_blocks": true,
+    "expanded_view": false,
+    "results_limit": "20"
+  },
+  "language": "en",
+  "new_user": true,
+  "re_import_wait_time": 13,
+  "smart_chat_threads": {
+    "chat_model": {
+      "adapter": "ollama",
+      "ollama": {
+        "model_key": "undefined",
+        "host": "http://localhost:11434",
+        "models": {
+          "hf.co/zenmagnets/Nemotron-3-Embed-1B-Q4_K_M-GGUF:q4_k_m": {
+            "model_name": "hf.co/zenmagnets/Nemotron-3-Embed-1B-Q4_K_M-GGUF:q4_k_m",
+            "id": "hf.co/zenmagnets/Nemotron-3-Embed-1B-Q4_K_M-GGUF:q4_k_m",
+            "multimodal": false,
+            "max_input_tokens": 262144,
+            "can_use_tools": true
+          },
+          "nomic-embed-text:latest": {
+            "model_name": "nomic-embed-text:latest",
+            "id": "nomic-embed-text:latest",
+            "multimodal": false,
+            "max_input_tokens": 2048,
+            "can_use_tools": true
+          },
+          "lfm2.5-thinking:1.2b": {
+            "model_name": "lfm2.5-thinking:1.2b",
+            "id": "lfm2.5-thinking:1.2b",
+            "multimodal": false,
+            "max_input_tokens": 128000,
+            "can_use_tools": true
+          },
+          "liquidai/lfm2.5-1.2b-instruct:q5_k_m": {
+            "model_name": "liquidai/lfm2.5-1.2b-instruct:q5_k_m",
+            "id": "liquidai/lfm2.5-1.2b-instruct:q5_k_m",
+            "multimodal": false,
+            "max_input_tokens": 128000,
+            "can_use_tools": true
+          },
+          "qwen3.5:2b": {
+            "model_name": "qwen3.5:2b",
+            "id": "qwen3.5:2b",
+            "multimodal": false,
+            "max_input_tokens": 262144,
+            "can_use_tools": true
+          },
+          "llava-llama3:latest": {
+            "model_name": "llava-llama3:latest",
+            "id": "llava-llama3:latest",
+            "multimodal": false,
+            "max_input_tokens": 8192,
+            "can_use_tools": true
+          },
+          "qwen3.5:4b": {
+            "model_name": "qwen3.5:4b",
+            "id": "qwen3.5:4b",
+            "multimodal": false,
+            "max_input_tokens": 262144,
+            "can_use_tools": true
+          },
+          "hf.co/benvezzani/nomic-embed-text-v2-moe-Q4_K_M-GGUF:q4_k_m": {
+            "model_name": "hf.co/benvezzani/nomic-embed-text-v2-moe-Q4_K_M-GGUF:q4_k_m",
+            "id": "hf.co/benvezzani/nomic-embed-text-v2-moe-Q4_K_M-GGUF:q4_k_m",
+            "multimodal": false,
+            "max_input_tokens": 512,
+            "can_use_tools": true
+          }
+        }
+      }
+    },
+    "active_thread_key": "",
+    "system_prompt": "",
+    "detect_self_referential": true,
+    "review_context": true,
+    "stream": true,
+    "language": "en",
+    "modifier_key_to_send": "shift",
+    "use_tool_calls": true
+  },
+  "smart_notices": {
+    "muted": {
+      "new_version_available": true
+    }
+  },
+  "version": "",
+  "models": {
+    "embedding_platform": "transformers",
+    "chat_completion_platform": "open_router"
+  },
+  "connections_lists": {
+    "results_collection_key": "smart_sources",
+    "score_algo_key": "similarity",
+    "connections_post_process": "none",
+    "results_limit": 20,
+    "connections_view_location": "right",
+    "exclude_frontmatter_blocks": true,
+    "connections_list_component_key": "connections_list_v4",
+    "connections_list_item_component_key": "connections_list_item_v3",
+    "frontmatter_filter_include": "",
+    "frontmatter_filter_exclude": "",
+    "components": {
+      "connections_list_v4": {
+        "show_graph": true
+      },
+      "connections_list_item_v3": {
+        "render_markdown": true,
+        "show_full_path": false
+      }
+    },
+    "exclude_inlinks": false
+  },
+  "context_items": {
+    "template_preset": "xml_structured",
+    "template_before": "<item loc=\"{{KEY}}\" at=\"{{TIME_AGO}}\">",
+    "template_after": "</item>"
+  },
+  "event_logs": {
+    "native_notice_info": false,
+    "native_notice_warning": true,
+    "native_notice_error": true,
+    "native_notice_attention": false,
+    "native_notice_milestone": true
+  },
+  "lookup_lists": {
+    "results_collection_key": "smart_blocks",
+    "score_algo_key": "similarity",
+    "results_limit": 20
+  },
+  "smart_contexts": {
+    "template_preset": "xml_structured",
+    "template_before": "<context>\n{{FILE_TREE}}",
+    "template_after": "</context>"
+  },
+  "embedding_models": {
+    "default_model_key": "transformers#1784752039181"
+  }
+}
