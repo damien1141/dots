@@ -5,14 +5,15 @@ set -Eeuo pipefail
 # Run as normal user (not root). AUR helper required (aura/yay/paru).
 
 REPO_PKGS=(
-  thunar kitty obs-studio btop gimp gram obsidian librewolf bun anki
-  # aura removed: it's an AUR package, not in official repos
+  aura thunar kitty obs-studio btop gimp gram obsidian
+  bun anki feh playerctl onlyoffice-bin betterbird-bin
+  qogir-icon-theme
 )
 
 AUR_PKGS=(
-  betterbird-bin opentubex-bin rofi-greenclip
-  bibata-cursor-theme-bin qogir-icon-theme betterlockscreen mpdris2-git
-  ttf-harmonyos-sans ttf-jetbrains-mono-nerd ttf-ms-fonts onlyoffice-bin
+  opentubex-bin rofi-greenclip librewolf-bin
+  bibata-cursor-theme-bin  betterlockscreen mpdris2-git
+  ttf-harmonyos-sans ttf-jetbrains-mono-nerd ttf-ms-fonts
 )
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
