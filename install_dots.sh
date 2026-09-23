@@ -80,6 +80,54 @@ install_aur_packages() {
   done
 }
 
+ensure_rust() {
+  info "ensuring rust toolchain"
+
+  if ! command -v cargo >/dev/null 2>&1; then
+    info "cargo not found, installing rustup"
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y || die "rustup install failed"
+    source "$HOME/.cargo/env" || true
+  fi
+
+  if ! command -v cargo >/dev/null 2>&1; then
+    die "cargo still not available after rustup install"
+  fi
+}
+
+build_jaiba() {
+  info "building jaiba from source"
+
+  local build_dir="$HOME/.local/share/jaiba-build"
+  rm -rf "$build_dir"
+  mkdir -p "$build_dir"
+
+  info "cloning jaiba repo"
+  git clone https://github.com/damien1141/jaiba.git "$build_dir" || die "jaiba git clone failed"
+
+  info "building jaiba in release mode"
+  pushd "$build_dir" >/dev/null || die "cannot enter jaiba build dir"
+  cargo build --release --locked || die "jaiba cargo build failed"
+  popd >/dev/null || true
+
+  info "installing jaiba binary"
+  mkdir -p "$HOME/.local/bin"
+  cp "$build_dir/target/release/jaiba" "$HOME/.local/bin/jaiba" || die "jaiba binary install failed"
+  chmod +x "$HOME/.local/bin/jaiba" || true
+
+  info "installing jaiba themes and config"
+  mkdir -p "$HOME/.config/rama/themes"
+  if [[ -d "$build_dir/themes" ]]; then
+    cp -a "$build_dir/themes/." "$HOME/.config/rama/themes/" || warn "jaiba themes copy failed"
+  fi
+  if [[ -f "$build_dir/jaiba_config.toml.sample" ]]; then
+    if [[ ! -f "$HOME/.config/rama/jaiba_config.toml" ]]; then
+      cp "$build_dir/jaiba_config.toml.sample" "$HOME/.config/rama/jaiba_config.toml" || warn "jaiba config sample copy failed"
+    fi
+  fi
+
+  rm -rf "$build_dir"
+}
+
 configure_fonts() {
   info "configuring fonts"
 
@@ -194,6 +242,8 @@ main() {
   detect_aur_helper
   install_repo_packages
   install_aur_packages
+  ensure_rust
+  build_jaiba
   configure_fonts
   configure_icons_cursor
   deploy_dotfiles
