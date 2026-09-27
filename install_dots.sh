@@ -140,87 +140,6 @@ install_awesome_git() {
   popd >/dev/null || true
 }
 
-ensure_rust() {
-  info "ensuring rust toolchain"
-
-  if command -v cargo >/dev/null 2>&1; then
-    return 0
-  fi
-
-  info "cargo not found"
-  if [[ -t 0 ]]; then
-    read -rp "install rustup now? [Y/n]: " input || input="n"
-  else
-    info "non-interactive terminal: skipping rustup"
-    return 1
-  fi
-
-  if [[ "$input" =~ ^[Nn]$ ]]; then
-    info "skipping rustup install"
-    return 1
-  fi
-
-  info "installing rustup"
-  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y || die "rustup install failed"
-  source "$HOME/.cargo/env" || true
-
-  if ! command -v cargo >/dev/null 2>&1; then
-    die "cargo still not available after rustup install"
-  fi
-
-  return 0
-}
-
-build_jaiba() {
-  info "building jaiba from source"
-
-  local build_dir="$HOME/.local/share/jaiba-build"
-  local repo_url="https://github.com/damien1141/jaiba.git"
-
-  # If already built and binary exists, skip unless forced
-  if [[ -x "$HOME/.local/bin/jaiba" ]] && [[ ! -t 0 ]]; then
-    info "jaiba binary already exists, skipping build (non-interactive)"
-    return 0
-  fi
-
-  if [[ -t 0 ]] && [[ -x "$HOME/.local/bin/jaiba" ]]; then
-    read -rp "jaiba already installed, rebuild? [y/N]: " input || input="n"
-    if [[ ! "$input" =~ ^[Yy]$ ]]; then
-      info "skipping jaiba rebuild"
-      return 0
-    fi
-  fi
-
-  rm -rf "$build_dir"
-  mkdir -p "$build_dir"
-
-  info "cloning jaiba repo"
-  git clone "$repo_url" "$build_dir" || die "jaiba git clone failed"
-
-  info "building jaiba in release mode"
-  pushd "$build_dir" >/dev/null || die "cannot enter jaiba build dir"
-  cargo build --release --locked || die "jaiba cargo build failed"
-  popd >/dev/null || true
-
-  info "installing jaiba binary"
-  mkdir -p "$HOME/.local/bin"
-  cp "$build_dir/target/release/jaiba" "$HOME/.local/bin/jaiba" || die "jaiba binary install failed"
-  chmod +x "$HOME/.local/bin/jaiba" || true
-
-  info "installing jaiba themes and config"
-  mkdir -p "$HOME/.config/rama/themes"
-  if [[ -d "$build_dir/themes" ]]; then
-    cp -a "$build_dir/themes/." "$HOME/.config/rama/themes/" || warn "jaiba themes copy failed"
-  fi
-  if [[ -f "$build_dir/jaiba_config.toml.sample" ]]; then
-    if [[ ! -f "$HOME/.config/rama/jaiba_config.toml" ]]; then
-      cp "$build_dir/jaiba_config.toml.sample" "$HOME/.config/rama/jaiba_config.toml" || warn "jaiba config sample copy failed"
-    fi
-  fi
-
-  rm -rf "$build_dir"
-}
-
 configure_fonts() {
   info "configuring fonts"
 
@@ -258,6 +177,35 @@ configure_fonts() {
     <family>serif</family>
     <prefer>
       <family>SourceSerifPro</family>
+    </prefer>
+  </alias>
+</fontconfig>
+EOF
+
+  # System-wide fontconfig: HarmonyOS Sans (sans), Source Serif Pro (serif),
+  # custom Noto Emoji (emoji) from the repo fonts folder.
+  info "writing /etc/fonts/local.conf (system-wide font aliases)"
+  sudo mkdir -p /etc/fonts
+  sudo tee /etc/fonts/local.conf >/dev/null <<'EOF'
+<?xml version="1.0"?>
+<!DOCTYPE fontconfig SYSTEM "fonts.dtd">
+<fontconfig>
+  <alias>
+    <family>sans-serif</family>
+    <prefer>
+      <family>HarmonyOS Sans</family>
+    </prefer>
+  </alias>
+  <alias>
+    <family>serif</family>
+    <prefer>
+      <family>Source Serif Pro</family>
+    </prefer>
+  </alias>
+  <alias>
+    <family>emoji</family>
+    <prefer>
+      <family>Noto Color Emoji</family>
     </prefer>
   </alias>
 </fontconfig>
@@ -346,13 +294,6 @@ main() {
   install_repo_packages
   install_aur_packages
   install_awesome_git
-
-  if ensure_rust; then
-    build_jaiba
-  else
-    info "skipping jaiba build"
-  fi
-
   configure_fonts
   configure_icons_cursor
   deploy_dotfiles
