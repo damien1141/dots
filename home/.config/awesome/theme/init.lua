@@ -72,9 +72,9 @@ theme.accent_3              = colors.accent_3
 
 
 -- font vars
-theme.font_var      = ui_vars.font .. " "
-theme.icon_var      = "Material Symbols Rounded "
-theme.icon_alt_var  = "Material Symbols Outlined "
+  theme.font_var      = ui_vars.font .. " "
+  theme.icon_var      = "Material Icons Round "
+  theme.icon_alt_var  = "Material Icons Outlined "
 
 -- props
 theme.title_pos     = ui_vars.titlebar_position
