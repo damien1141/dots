@@ -208,6 +208,12 @@ EOF
       <family>Noto Color Emoji</family>
     </prefer>
   </alias>
+  <alias>
+    <family>monospace</family>
+    <prefer>
+      <family>JetBrainsMono Nerd Font</family>
+    </prefer>
+  </alias>
 </fontconfig>
 EOF
 
