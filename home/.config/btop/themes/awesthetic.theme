@@ -1,0 +1,63 @@
+# Awesthetic Pro - Dark Frosted (matched to awesomewm)
+# Palette: bg #0F0F11 / fg #ccd0d9 / accent #8AB4F8 / green #589979 / red #F85E4D
+
+theme[main_bg]="#0F0F11"
+theme[main_fg]="#ccd0d9"
+theme[title]="#ccd0d9"
+theme[hi_fg]="#8AB4F8"
+theme[selected_bg]="#212125"
+theme[selected_fg]="#ccd0d9"
+theme[inactive_fg]="#7a7f8c"
+theme[graph_text]="#7a7f8c"
+theme[meter_bg]="#1a1a1d"
+theme[proc_misc]="#7a7f8c"
+theme[cpu_box]="#212125"
+theme[mem_box]="#212125"
+theme[net_box]="#212125"
+theme[proc_box]="#212125"
+theme[div_line]="#212125"
+
+# Temperature: green → blue → red (cool → hot)
+theme[temp_start]="#589979"
+theme[temp_mid]="#8AB4F8"
+theme[temp_end]="#F85E4D"
+
+# CPU load: same gradient
+theme[cpu_start]="#589979"
+theme[cpu_mid]="#8AB4F8"
+theme[cpu_end]="#F85E4D"
+
+# Mem/Disk free: green
+theme[free_start]="#589979"
+theme[free_mid]="#589979"
+theme[free_end]="#589979"
+
+# Mem/Disk cached: accent blue
+theme[cached_start]="#8AB4F8"
+theme[cached_mid]="#8AB4F8"
+theme[cached_end]="#8AB4F8"
+
+# Mem/Disk available: green → blue
+theme[available_start]="#589979"
+theme[available_mid]="#8AB4F8"
+theme[available_end]="#8AB4F8"
+
+# Mem/Disk used: red ramp
+theme[used_start]="#9C474C"
+theme[used_mid]="#F85E4D"
+theme[used_end]="#F9DEDC"
+
+# Download: accent blue
+theme[download_start]="#8AB4F8"
+theme[download_mid]="#8AB4F8"
+theme[download_end]="#8AB4F8"
+
+# Upload: green
+theme[upload_start]="#589979"
+theme[upload_mid]="#589979"
+theme[upload_end]="#589979"
+
+# Process graph: accent
+theme[process_start]="#8AB4F8"
+theme[process_mid]="#8AB4F8"
+theme[process_end]="#8AB4F8"
