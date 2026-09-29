@@ -73,7 +73,7 @@ theme.accent_3              = colors.accent_3
 
 -- font vars
 theme.font_var      = ui_vars.font .. " "
-theme.icon_var      = "Material Icons Rounded "
+theme.icon_var      = "Material Icons Round "
 theme.icon_alt_var  = "Material Icons Outlined "
 
 -- props

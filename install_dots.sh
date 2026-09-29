@@ -104,7 +104,7 @@ install_aur_packages() {
   for p in "${AUR_PKGS[@]}"; do
     case "$AUR_HELPER" in
       aura)
-        aura -Au --noconfirm "$p" || warn "aura install failed: $p"
+        aura -A --noconfirm "$p" || warn "aura install failed: $p"
         ;;
       yay)
         yay -S --needed --noconfirm "$p" || warn "yay install failed: $p"
@@ -153,7 +153,7 @@ configure_fonts() {
     done
   fi
 
-  # Fontconfig aliases: HarmonyOS Sans for sans, JetBrains Mono Nerd for mono
+  # Fontconfig aliases: HarmonyOS Sans for sans, Source Serif Pro for serif
   mkdir -p "$HOME/.config/fontconfig/conf.d"
   cat > "$HOME/.config/fontconfig/conf.d/50-fonts.conf" <<'EOF'
 <?xml version="1.0"?>
@@ -163,12 +163,6 @@ configure_fonts() {
     <family>sans-serif</family>
     <prefer>
       <family>HarmonyOS Sans</family>
-    </prefer>
-  </alias>
-  <alias>
-    <family>monospace</family>
-    <prefer>
-      <family>JetBrainsMono Nerd Font</family>
     </prefer>
   </alias>
   <alias>
@@ -204,12 +198,6 @@ EOF
     <family>emoji</family>
     <prefer>
       <family>Noto Color Emoji</family>
-    </prefer>
-  </alias>
-  <alias>
-    <family>monospace</family>
-    <prefer>
-      <family>JetBrainsMono Nerd Font</family>
     </prefer>
   </alias>
 </fontconfig>
