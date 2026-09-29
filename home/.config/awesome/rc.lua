@@ -15,12 +15,12 @@ home_var        = os.getenv("HOME")
 -- Debug logging: capture all AwesomeWM errors (including notifications) to debug.txt
 local debug_path = home_var .. "/.config/awesome/debug.txt"
 awesome.connect_signal("debug::error", function(err)
-    local f = io.open(debug_path, "a")
-    if f then
-        f:write(os.date("%Y-%m-%d %H:%M:%S") .. " - " .. tostring(err) .. "\n")
-        f:close()
+local f = io.open(debug_path, "a")
+if f then
+    f:write(os.date("%Y-%m-%d %H:%M:%S") .. " - " .. tostring(err) .. "\n")
+    f:close()
     end
-end)
+    end)
 
 
 -- user preferences ⚙️

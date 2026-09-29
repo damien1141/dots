@@ -1,8 +1,0 @@
-2026-09-21 22:45:19 - .../solis/.config/awesome/mods/bling/helpers/icon_theme.lua:98: attempt to index field 'gtk_theme' (a nil value)
-2026-09-21 22:45:19 - ...olis/.config/awesome/layout/dashboard/notifs/creator.lua:44: attempt to concatenate field 'accent' (a nil value)
-2026-09-21 22:45:19 - ...olis/.config/awesome/layout/dashboard/notifs/creator.lua:44: attempt to concatenate field 'accent' (a nil value)
-2026-09-21 22:45:19 - ...olis/.config/awesome/layout/dashboard/notifs/creator.lua:44: attempt to concatenate field 'accent' (a nil value)
-2026-09-21 22:45:21 - .../solis/.config/awesome/mods/bling/helpers/icon_theme.lua:98: attempt to index field 'gtk_theme' (a nil value)
-2026-09-21 22:45:22 - ...olis/.config/awesome/layout/dashboard/notifs/creator.lua:44: attempt to concatenate field 'accent' (a nil value)
-2026-09-21 22:45:22 - ...olis/.config/awesome/layout/dashboard/notifs/creator.lua:44: attempt to concatenate field 'accent' (a nil value)
-2026-09-21 22:45:22 - ...olis/.config/awesome/layout/dashboard/notifs/creator.lua:44: attempt to concatenate field 'accent' (a nil value)

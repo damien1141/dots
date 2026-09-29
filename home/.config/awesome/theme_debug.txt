@@ -1,8 +1,0 @@
-22:45:18 theme ran; beautiful.fg_color=#ccd0d9 rounded=6
-22:45:21 theme ran; beautiful.fg_color=#ccd0d9 rounded=6
-22:47:39 theme ran; beautiful.fg_color=#ccd0d9 rounded=6
-09:40:45 theme ran; beautiful.fg_color=#ccd0d9 rounded=6
-21:23:31 theme ran; beautiful.fg_color=#ccd0d9 rounded=6
-08:46:24 theme ran; beautiful.fg_color=#ccd0d9 rounded=6
-17:37:58 theme ran; beautiful.fg_color=#ccd0d9 rounded=6
-17:39:39 theme ran; beautiful.fg_color=#ccd0d9 rounded=6

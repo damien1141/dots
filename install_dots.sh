@@ -7,13 +7,12 @@ set -Eeuo pipefail
 REPO_PKGS=(
   aura thunar kitty obs-studio btop gimp gram obsidian
   bun anki feh playerctl onlyoffice-bin betterbird-bin
-  qogir-icon-theme
 )
 
 AUR_PKGS=(
   opentubex-bin rofi-greenclip librewolf-bin
-  bibata-cursor-theme-bin  betterlockscreen mpdris2-git
-  ttf-ms-fonts
+  colloid-cursors-git  betterlockscreen mpdris2-git
+  ttf-ms-fonts fluent-icon-theme
 )
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -230,28 +229,36 @@ configure_icons_cursor() {
 
   cat > "$HOME/.config/gtk-3.0/settings.ini" <<'EOF'
 [Settings]
-gtk-icon-theme-name = Qogir
-gtk-cursor-theme-name = Bibata
-gtk-font-name = HarmonyOS Sans 11
-gtk-theme-name = Awesthetic-Pro
+gtk-theme-name=Awesthetic-Pro
+gtk-icon-theme-name=Fluent-yellow
+gtk-font-name=HarmonyOS Sans Medium 11
+gtk-cursor-theme-name=Colloid-cursors
+gtk-cursor-theme-size=24
 EOF
 
   cat > "$HOME/.config/gtk-4.0/settings.ini" <<'EOF'
 [Settings]
-gtk-icon-theme-name = Qogir
-gtk-cursor-theme-name = Bibata
-gtk-font-name = HarmonyOS Sans 11
-gtk-theme-name = Awesthetic-Pro
+gtk-theme-name=Awesthetic-Pro
+gtk-icon-theme-name=Fluent-yellow
+gtk-font-name=HarmonyOS Sans Medium 11
+gtk-cursor-theme-name=Colloid-cursors
+gtk-cursor-theme-size=24
 EOF
 
   # QT/KDE icon/cursor
   mkdir -p "$HOME/.config"
   mkdir -p "$HOME/.config/qt6ct"
   cat > "$HOME/.config/qt6ct/qt6ct.conf" <<'EOF'
-[Appearance]
-icon_theme=Qogir
-cursor_theme=Bibata
-style=awesthetic
+  [Appearance]
+  color_scheme_path=~/.config/qt6ct/colors/awesthetic.conf
+  custom_palette=true
+  icon_theme=Fluent-yellow
+  standard_dialogs=gtk3
+  style=breeze
+
+  [Fonts]
+  fixed="HarmonyOS Sans,12,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,Medium,0,0"
+  general="HarmonyOS Sans,12,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,Medium,0,0"
 EOF
 }
 

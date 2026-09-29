@@ -7,16 +7,23 @@
 // custom settings, run `gram: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "terminal": {
+    "dock": "right"
+  },
+  "ui_font_family": "HarmonyOS Sans",
+  "buffer_line_height": "comfortable",
+  "buffer_font_family": "JetBrains Mono",
   "project_panel": {
+    "dock": "left",
     "file_icons": true,
     "folder_icons": true
   },
   "icon_theme": "JetBrains New UI Icons (Dark)",
-  "ui_font_size": 14,
-  "buffer_font_size": 14,
+  "ui_font_size": 14.0,
+  "buffer_font_size": 12.0,
   "theme": {
     "mode": "system",
-    "light": "Melange Light",
-    "dark": "awesthetic",
+    "light": "awesthetic",
+    "dark": "awesthetic"
   },
 }

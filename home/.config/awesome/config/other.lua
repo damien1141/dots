@@ -234,10 +234,8 @@ local function enable_rounding()
         end)
 
         local function no_round_corners (c)
-            if c.fullscreen then
+            if c.fullscreen or c.maximized then
                 c.shape = nil
-            elseif c.maximized then
-                c.shape = helpers.prrect(beautiful.rounded, true, true, false, false)
             else
                 c.shape = helpers.rrect(beautiful.rounded)
             end

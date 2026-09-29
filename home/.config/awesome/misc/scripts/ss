@@ -30,7 +30,7 @@ fi
 
 restore_picom() {
     if $PICOM_WAS_RUNNING; then
-        picom --daemon >/dev/null 2>&1 &
+        picom --daemon -b --config /home/solis/.config/awesome/picom.conf >/dev/null 2>&1 &
     fi
 }
 # Ensures picom restarts even if maim fails or you press Esc
@@ -76,7 +76,7 @@ fi
 if command -v notify-send >/dev/null; then
     NOTIFY_ICON="$PATH_TO_FILE"
     THUMB_FILE=""
-    
+
     # Optional: Generate a thumbnail to keep the notification size reasonable.
     # Supports both ImageMagick v7 (magick) and v6 (convert).
     IMAGEMAGICK_CMD=""
@@ -94,7 +94,7 @@ if command -v notify-send >/dev/null; then
         fi
     fi
 
-    # Send notification. We use -i for the icon path, and the 'image-path' hint 
+    # Send notification. We use -i for the icon path, and the 'image-path' hint
     # which is explicitly supported by modern daemons like Dunst and Mako for inline images.
     notify-send -u normal -i "$NOTIFY_ICON" \
                 --hint=string:image-path:"$NOTIFY_ICON" \

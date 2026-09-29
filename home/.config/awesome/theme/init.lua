@@ -72,9 +72,9 @@ theme.accent_3              = colors.accent_3
 
 
 -- font vars
-  theme.font_var      = ui_vars.font .. " "
-  theme.icon_var      = "Material Icons Round "
-  theme.icon_alt_var  = "Material Icons Outlined "
+theme.font_var      = ui_vars.font .. " "
+theme.icon_var      = "Material Symbols Rounded "
+theme.icon_alt_var  = "Material Symbols Outlined "
 
 -- props
 theme.title_pos     = ui_vars.titlebar_position
@@ -298,14 +298,4 @@ beautiful.init(theme)
 -- beautiful at defaults. Force-assign our fields so widgets never see nil.
 for k, v in pairs(theme) do
     if beautiful[k] == nil then beautiful[k] = v end
-end
-
--- TEMP DEBUG
-do
-    local f = io.open("/home/solis/.config/awesome/theme_debug.txt", "a")
-    if f then
-        f:write(os.date("%H:%M:%S") .. " theme ran; beautiful.fg_color=" ..
-            tostring(beautiful.fg_color) .. " rounded=" .. tostring(beautiful.rounded) .. "\n")
-        f:close()
-    end
 end
