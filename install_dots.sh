@@ -11,8 +11,7 @@ REPO_PKGS=(
 
 AUR_PKGS=(
   opentubex-bin rofi-greenclip librewolf-bin
-  colloid-cursors-git  betterlockscreen mpdris2-git
-  ttf-ms-fonts fluent-icon-theme
+  betterlockscreen mpdris2-git ttf-ms-fonts
 )
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -230,18 +229,18 @@ configure_icons_cursor() {
   cat > "$HOME/.config/gtk-3.0/settings.ini" <<'EOF'
 [Settings]
 gtk-theme-name=Awesthetic-Pro
-gtk-icon-theme-name=Fluent-yellow
+gtk-icon-theme-name=Adwaita
 gtk-font-name=HarmonyOS Sans Medium 11
-gtk-cursor-theme-name=Colloid-cursors
+gtk-cursor-theme-name=Adwaita
 gtk-cursor-theme-size=24
 EOF
 
   cat > "$HOME/.config/gtk-4.0/settings.ini" <<'EOF'
 [Settings]
 gtk-theme-name=Awesthetic-Pro
-gtk-icon-theme-name=Fluent-yellow
+gtk-icon-theme-name=Adwaita
 gtk-font-name=HarmonyOS Sans Medium 11
-gtk-cursor-theme-name=Colloid-cursors
+gtk-cursor-theme-name=Adwaita
 gtk-cursor-theme-size=24
 EOF
 
@@ -252,7 +251,7 @@ EOF
   [Appearance]
   color_scheme_path=~/.config/qt6ct/colors/awesthetic.conf
   custom_palette=true
-  icon_theme=Fluent-yellow
+  icon_theme=Fluent-Adwaita
   standard_dialogs=gtk3
   style=breeze
 
