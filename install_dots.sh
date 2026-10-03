@@ -216,19 +216,19 @@ configure_icons_cursor() {
 
   cat > "$HOME/.config/gtk-3.0/settings.ini" <<'EOF'
 [Settings]
-gtk-theme-name=Awesthetic-Pro
+gtk-theme-name=Awesthetic-dark
 gtk-icon-theme-name=Adwaita
 gtk-font-name=HarmonyOS Sans Medium 11
-gtk-cursor-theme-name=Adwaita
+gtk-cursor-theme-name=Colloid-dark-cursors
 gtk-cursor-theme-size=24
 EOF
 
   cat > "$HOME/.config/gtk-4.0/settings.ini" <<'EOF'
 [Settings]
-gtk-theme-name=Awesthetic-Pro
+gtk-theme-name=Awesthetic-dark
 gtk-icon-theme-name=Adwaita
 gtk-font-name=HarmonyOS Sans Medium 11
-gtk-cursor-theme-name=Adwaita
+gtk-cursor-theme-name=Colloid-dark-cursors
 gtk-cursor-theme-size=24
 EOF
 
@@ -239,7 +239,7 @@ EOF
   [Appearance]
   color_scheme_path=~/.config/qt6ct/colors/awesthetic.conf
   custom_palette=true
-  icon_theme=Fluent-Adwaita
+  icon_theme=Adwaita
   standard_dialogs=gtk3
   style=breeze
 
