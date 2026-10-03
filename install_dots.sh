@@ -12,6 +12,7 @@ REPO_PKGS=(
 AUR_PKGS=(
   opentubex-bin rofi-greenclip librewolf-bin
   betterlockscreen mpdris2-git ttf-ms-fonts
+  colloid-icon-theme-git
 )
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -217,7 +218,7 @@ configure_icons_cursor() {
   cat > "$HOME/.config/gtk-3.0/settings.ini" <<'EOF'
 [Settings]
 gtk-theme-name=Awesthetic-dark
-gtk-icon-theme-name=Adwaita
+gtk-icon-theme-name=Colloid-Grey-Dark
 gtk-font-name=HarmonyOS Sans Medium 11
 gtk-cursor-theme-name=Colloid-dark-cursors
 gtk-cursor-theme-size=24
@@ -226,7 +227,7 @@ EOF
   cat > "$HOME/.config/gtk-4.0/settings.ini" <<'EOF'
 [Settings]
 gtk-theme-name=Awesthetic-dark
-gtk-icon-theme-name=Adwaita
+gtk-icon-theme-name=Colloid-Grey-Dark
 gtk-font-name=HarmonyOS Sans Medium 11
 gtk-cursor-theme-name=Colloid-dark-cursors
 gtk-cursor-theme-size=24
@@ -239,7 +240,7 @@ EOF
   [Appearance]
   color_scheme_path=~/.config/qt6ct/colors/awesthetic.conf
   custom_palette=true
-  icon_theme=Adwaita
+  icon_theme=Colloid-Grey-Dark
   standard_dialogs=gtk3
   style=breeze
 
