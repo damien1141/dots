@@ -27,13 +27,13 @@ if f then
 user_likes      = {
 
     -- aplications
-    term        = "kitty",
+    term        = "dwmterm",
     editor      = "gram",
     code        = "gram",
     web         = "librewolf",
     discord     = "discord",
-    steam       = "kitty jaiba",
-    music    = "kitty --class 'music' ncmpcpp ",
+    steam       = "dwmterm -e jaiba",
+    music       = "dwmterm -c 'music' -e ncmpcpp ",
     files       =  "thunar",
     llm_port    = 5001, -- Default LLM server port (Ollama/llama.cpp)
 
@@ -53,7 +53,7 @@ user_likes      = {
         pre_dawn  = 3400,
         dusk      = 2700,
         deep      = 1900,
-        cap_hour  = 21,
+        cap_hour  = 18,
         tick      = 60,
     },
 

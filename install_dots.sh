@@ -139,6 +139,19 @@ install_awesome_git() {
   popd >/dev/null || true
 }
 
+install_dwmterm() {
+  local tmpdir
+  tmpdir="$(mktemp -d)"
+  trap 'rm -rf "$tmpdir"' RETURN
+
+  info "building dwmterm"
+  git clone https://github.com/damien1141/dwmterm.git "$tmpdir/dwmterm"     || die "dwmterm clone failed"
+  pushd "$tmpdir/dwmterm" >/dev/null || die "cannot enter dwmterm build dir"
+  make || die "dwmterm build failed"
+  sudo make install || die "dwmterm install failed"
+  popd >/dev/null || true
+}
+
 configure_fonts() {
   info "configuring fonts"
 
@@ -217,7 +230,7 @@ configure_icons_cursor() {
 
   cat > "$HOME/.config/gtk-3.0/settings.ini" <<'EOF'
 [Settings]
-gtk-theme-name=Awesthetic-dark
+gtk-theme-name=Awesthetic-Pro
 gtk-icon-theme-name=Colloid-Grey-Dark
 gtk-font-name=HarmonyOS Sans Medium 11
 gtk-cursor-theme-name=Colloid-dark-cursors
@@ -226,7 +239,7 @@ EOF
 
   cat > "$HOME/.config/gtk-4.0/settings.ini" <<'EOF'
 [Settings]
-gtk-theme-name=Awesthetic-dark
+gtk-theme-name=Awesthetic-Pro
 gtk-icon-theme-name=Colloid-Grey-Dark
 gtk-font-name=HarmonyOS Sans Medium 11
 gtk-cursor-theme-name=Colloid-dark-cursors
@@ -294,6 +307,7 @@ main() {
   detect_aur_helper
   install_repo_packages
   install_aur_packages
+  install_dwmterm
   install_awesome_git
   configure_fonts
   configure_icons_cursor

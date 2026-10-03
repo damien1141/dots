@@ -255,8 +255,8 @@ enable_rounding()
 
 -- scratchpad
 _G.term_scratch_pad = bling.module.scratchpad {
-    command = "kitty --class scratch-term",               -- How to spawn the scratchpad
-    rule = { instance = "scratch-term" },                     -- The rule that the scratchpad will be searched by
+    command = "dwmterm -c scratchpad",               -- How to spawn the scratchpad
+    rule = { instance = "scratchpad" },                     -- The rule that the scratchpad will be searched by
     sticky = true,                                    -- Whether the scratchpad should be sticky
     autoclose = false,                                 -- Whether it should hide itself when losing focus
     floating = true,                                  -- Whether it should be floating (MUST BE TRUE FOR ANIMATIONS)
